@@ -14,7 +14,7 @@ class BlogPosts extends Model {
   // used for security purposes
   // for example: account status, role, ids
   // "mass assignemnt vulnerbiltiy"
-  protected $fillable = ['title'];
+  protected $fillable = ['title', 'description', 'url_alias', 'tag_id'];
 
   //#2 All is fillable except what is guarded.
   protected $guarded = ['id'];
@@ -39,7 +39,10 @@ class BlogPosts extends Model {
     }
 
     throw new ModelNotFoundException();
+  }
 
+  public function tag() {
+    return $this->belongsTo(Tag::class);
   }
 
 }

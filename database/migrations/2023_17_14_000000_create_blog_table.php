@@ -17,6 +17,7 @@ return new class extends Migration {
       $table->string('title');
       $table->longText('description');
       $table->string('url_alias')->unique();
+      $table->foreignId('tag_id');
       $table->timestamps();
     });
   }

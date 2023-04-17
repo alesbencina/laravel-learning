@@ -2,12 +2,15 @@
 
 namespace Database\Factories;
 
+use App\Models\BlogPosts;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class BlogPostFactory extends Factory {
+class BlogPostsFactory extends Factory {
+
+  protected $model = BlogPosts::class;
 
   /**
    * Define the model's default state.
@@ -19,7 +22,7 @@ class BlogPostFactory extends Factory {
       'title' => fake()->title,
       'description' => fake()->sentence,
       'url_alias' => fake()->url,
-      'author_id' => UserFactory::factory(),
+      'author_id' => \Database\Factories\UserFactory::factory(),
       'tag_id' => TagsFactory::factory(),
     ];
   }

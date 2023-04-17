@@ -18,6 +18,7 @@ return new class extends Migration {
       $table->longText('description');
       $table->string('url_alias')->unique();
       $table->foreignId('tag_id');
+      $table->foreignId('author_id');
       $table->timestamps();
     });
   }

@@ -20,8 +20,15 @@ Route::get('/', function () {
 });
 
 Route::get('blog-posts', function () {
-  $posts = BlogPosts::All();
+  // Debugging which sql queries are send.
+  \Illuminate\Support\Facades\DB::listen(function ($query) {
+    logger($query->sql, $query->bindings);
+  });
 
+  // Eager loading.
+  // Reduce the numbers of sql queries.
+  $posts = BlogPosts::with('tag')->get();
+  #$posts = BlogPosts::All();
   return view('blog-posts', [
     'posts' => $posts,
   ]);
@@ -45,6 +52,7 @@ Route::get('tag/{tag:url_alias}', function (Tag $tag) {
   //$post = BlogPosts::findBySlugOrFail($slug);
   return view('tag-detail-page', [
     'posts' => $tag->blogposts,
+    'tag' => $tag
   ]);
 
 });

@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
 
     @foreach($posts as $post)
         <article id="{{ $post->id }}">
@@ -11,5 +9,5 @@
             <a href="/blog-posts{{ $post->url_alias }}">{{ $post->title }}</a>
         </article>
     @endforeach
+</x-layout>
 
-@endsection

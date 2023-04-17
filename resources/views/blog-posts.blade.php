@@ -6,7 +6,7 @@
                 {{ $post->title }}
             </h2>
 
-            <a href="/blog-posts{{ $post->url_alias }}">{{ $post->title }}</a>
+            <a href="/blog-posts/{{ $post->url_alias }}">{{ $post->title }}</a>
         </article>
     @endforeach
 </x-layout>

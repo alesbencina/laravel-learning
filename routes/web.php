@@ -27,11 +27,8 @@ Route::get('/blog-posts', function () {
 });
 
 Route::get('/blog-posts/{slug}', function (string $slug) {
-  $post = BlogPosts::findBySlug($slug);
+  $post = BlogPosts::findBySlugOrFail($slug);
   if ($post) {
-    $post = cache()->remember("blog-post-detail.{$slug}",5,function () {
-        return $cached;
-    });
     return view('blog-detail-page', [
       'post' => $post,
     ]);

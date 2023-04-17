@@ -3,8 +3,13 @@
         <h2>
             {{ $post->title }}
         </h2>
+        <div>
+            {{$post->description}}
+        </div>
 
-        <a href="/log-posts">Back</a>
+        <div><a href="/blog-posts">Back</a>
+
+        </div>
     </article>
 
 </x-layout>

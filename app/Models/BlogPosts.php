@@ -4,15 +4,41 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class BlogPosts extends Model
-{
-    use HasFactory;
+class BlogPosts extends Model {
 
-  public static function findBySlug(string $slug) {
+  use HasFactory;
 
-    // Load from cache
+  // #1 Allow updating only title instead of whole object.
+  // used for security purposes
+  // for example: account status, role, ids
+  // "mass assignemnt vulnerbiltiy"
+  protected $fillable = ['title'];
 
+  //#2 All is fillable except what is guarded.
+  protected $guarded = ['id'];
+
+  //#3 never allow mass assign. never provide generic array, devs need to be in a controll of the array
+
+  public static function getAll() {
+    // Try caching the whole collection.
+    return cache()->rememberForever('blogposts.all', function () {
+      return collect(self::All());
+    });
+  }
+
+  public static function findBySlugOrFail(string $slug) {
+    $allPosts = self::getAll();
+    if ($allPosts->isNotEmpty()) {
+      $postWithSluge = $allPosts->firstWhere('url_alias', $slug);
+      if ($postWithSluge) {
+        return $postWithSluge;
+      }
+      throw new ModelNotFoundException('There is no post with slug found');
+    }
+
+    throw new ModelNotFoundException();
 
   }
 

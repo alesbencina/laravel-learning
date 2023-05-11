@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class TagsFactory extends Factory {
+class TagFactory extends Factory {
 
   protected $model = Tag::class;
   /**
@@ -18,8 +18,8 @@ class TagsFactory extends Factory {
    */
   public function definition(): array {
     return [
-      'name' => fake()->title,
-      'url_alias' => fake()->url,
+      'name' => fake()->text(50),
+      'url_alias' => fake()->slug,
     ];
   }
 

@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\BlogPosts;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,11 +21,11 @@ class BlogPostsFactory extends Factory {
    */
   public function definition(): array {
     return [
-      'title' => fake()->title,
-      'description' => fake()->sentence,
-      'url_alias' => fake()->url,
-      'author_id' => \Database\Factories\UserFactory::factory(),
-      'tag_id' => TagsFactory::factory(),
+      'title' => fake()->sentence(3),
+      'description' => fake()->paragraph,
+      'url_alias' => fake()->slug,
+      'author_id' => User::factory(),
+      'tag_id' => Tag::factory(),
     ];
   }
 

@@ -1,4 +1,5 @@
 <x-layout>
+    @include ('_blog-post-header')
     <article id="{{ $post->id }}">
         <h2>
             {{ $post->title }}

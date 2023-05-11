@@ -21,5 +21,23 @@
             </div>
         </article>
     @endforeach
+
+        <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+            <x-post-teaser-featured />
+            <div class="lg:grid lg:grid-cols-3">
+                <x-post-teaser/>
+                <x-post-teaser/>
+                <x-post-teaser/>
+            </div>
+
+
+            <div class="lg:grid lg:grid-cols-2">
+                <x-post-teaser/>
+                <x-post-teaser/>
+            </div>
+
+        </main>
+
+
 </x-layout>
 

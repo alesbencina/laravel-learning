@@ -21,6 +21,12 @@ class BlogPosts extends Model {
 
   //#3 never allow mass assign. never provide generic array, devs need to be in a controll of the array
 
+  // For eager loading, super cool because you reduce number of queries and solve N+1 problem.
+  // Basically performs IN condition instead of WHERE tag=1 LIMIT 1; WHERE tag=2 LIMIT 1;
+  // Opposite function - if you don't want tags or any relationships you can use ::without(['tag']).
+  // Third option is create a helper method that returns this data.
+  protected $with = ['tag','author'];
+
   public static function getAll() {
     // Try caching the whole collection.
     return cache()->rememberForever('blogposts.all', function () {
@@ -44,7 +50,7 @@ class BlogPosts extends Model {
   public function tag() {
     return $this->belongsTo(Tag::class);
   }
-  
+
   public function author() {
     return $this->belongsTo(User::class);
   }

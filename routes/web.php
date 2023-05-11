@@ -2,6 +2,7 @@
 
 use App\Models\BlogPosts;
 use App\Models\Tag;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +22,13 @@ Route::get('/', function () {
 
 Route::get('blog-posts', function () {
   // Debugging which sql queries are send.
-  \Illuminate\Support\Facades\DB::listen(function ($query) {
+  DB::listen(function ($query) {
     logger($query->sql, $query->bindings);
   });
 
   // Eager loading.
   // Reduce the numbers of sql queries.
-  $posts = BlogPosts::with('tag')->get();
+  $posts = BlogPosts::latest('updated_at')->with('tag','author')->get();
   #$posts = BlogPosts::All();
   return view('blog-posts', [
     'posts' => $posts,
@@ -53,6 +54,15 @@ Route::get('tag/{tag:url_alias}', function (Tag $tag) {
   return view('tag-detail-page', [
     'posts' => $tag->blogposts,
     'tag' => $tag
+  ]);
+
+});
+
+Route::get('authors/{author:username}', function (\App\Models\User $author) {
+  //$post = BlogPosts::findBySlugOrFail($slug);
+  return view('author-detail-page', [
+    'posts' => $author->blogPosts,
+    'author' => $author
   ]);
 
 });

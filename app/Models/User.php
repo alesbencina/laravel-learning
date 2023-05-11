@@ -48,8 +48,8 @@ class User extends Authenticatable {
    *
    * @return \Illuminate\Database\Eloquent\Relations\HasMany
    */
-  public function withBlogs(): HasMany {
-    return $this->hasMany(BlogPosts::class);
+  public function blogPosts(): HasMany {
+    return $this->hasMany(BlogPosts::class,'author_id');
   }
 
 }

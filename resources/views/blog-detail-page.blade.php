@@ -3,7 +3,7 @@
         <h2>
             {{ $post->title }}
         </h2>
-        <span>Blog post by: {{$post->author->name}}</span>
+        <a href="/author/{{$post->author->username}}">Blog post by: {{$post->author->name}}</a>
         <div>
             <code>
                 Output dangerous. For printing html from db table.

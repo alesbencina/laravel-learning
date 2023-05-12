@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Models\BlogPosts;
@@ -36,16 +37,29 @@ Route::get('blog-posts', function () {
   ]);
 })->name('home');
 
-// blog_posts table: column
-// similar like firstOfFail
-Route::get('blog-posts/{blog_posts:url_alias}', function (BlogPosts $blogPosts) {
+Route::get('blog-posts/{blog_posts:url_alias}', [
+  BlogPostController::class,
+  'show',
+]);
+
+Route::post('blog-posts/comment/new/{blog_posts:id}', [
+  BlogPostController::class,
+  'createComment',
+]);
+
+
+Route::post('blog-posts/comment/delete/{comment:id}', [
+  BlogPostController::class,
+  'deleteComment',
+]);
+/*function (BlogPosts $blogPosts) {
   //$post = BlogPosts::findBySlugOrFail($slug);
   return view('blog-detail-page', [
       'post' => $blogPosts,
     ]
   );
-
 });//->where('post', ['A-z_\-+']);
+*/
 // @todo can add own class?
 //->whereAlphaNumeric('post');
 
@@ -56,7 +70,6 @@ Route::get('tag/{tag:url_alias}', function (Tag $tag) {
     'posts' => $tag->blogposts,
     'tag' => $tag,
   ]);
-
 });
 
 Route::get('authors/{author:username}', function (\App\Models\User $author) {
@@ -65,12 +78,14 @@ Route::get('authors/{author:username}', function (\App\Models\User $author) {
     'posts' => $author->blogPosts,
     'author' => $author,
   ]);
-
 });
 
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+Route::get('register', [RegisterController::class, 'create'])
+  ->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])
+  ->middleware('guest');
 
 Route::get('login', [SessionController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionController::class, 'login'])->middleware('guest');
-Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');
+Route::post('logout', [SessionController::class, 'destroy'])
+  ->middleware('auth');

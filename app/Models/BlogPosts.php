@@ -25,7 +25,7 @@ class BlogPosts extends Model {
   // Basically performs IN condition instead of WHERE tag=1 LIMIT 1; WHERE tag=2 LIMIT 1;
   // Opposite function - if you don't want tags or any relationships you can use ::without(['tag']).
   // Third option is create a helper method that returns this data.
-  protected $with = ['tag','author'];
+  protected $with = ['tag', 'author', 'comments'];
 
   public static function getAll() {
     // Try caching the whole collection.
@@ -54,4 +54,9 @@ class BlogPosts extends Model {
   public function author() {
     return $this->belongsTo(User::class);
   }
+
+  public function comments() {
+    return $this->hasMany(Comment::class, 'blog_posts_id');
+  }
+
 }

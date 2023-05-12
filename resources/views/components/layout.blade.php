@@ -14,13 +14,23 @@
             </a>
         </div>
 
-        <div class="mt-8 md:mt-0">
-            <a href="/" class="text-xs font-bold uppercase">Home Page</a>
-
+        <div class="mt-8 md:mt-0 flex items-center">
+            @if (!auth()->check())
+                <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                <a href="/login" class="ml-4 text-xs font-bold uppercase">Log in</a>
+            @else
+                <span class="text-xs font-bold uppercase">Loged in: {{ auth()->user()->email }}</span>
+                <form method="POST" action="/logout" class="text-xs font-semibold text-blue-500 ml-5">
+                    @csrf
+                    <button type="submit">Log out</button>
+                </form>
+            @endif
+            <a href="/" class="ml-6 text-xs font-bold uppercase">Home Page</a>
             <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                 Subscribe for Updates
             </a>
         </div>
+
     </nav>
 
     {{ $slot }}
@@ -53,4 +63,5 @@
         </div>
     </footer>
 </section>
+<x-flash/>
 </body>

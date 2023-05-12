@@ -13,16 +13,7 @@ class User extends Authenticatable {
 
   use HasApiTokens, HasFactory, Notifiable;
 
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array<int, string>
-   */
-  protected $fillable = [
-    'name',
-    'email',
-    'password',
-  ];
+  protected $guarded = [];
 
   /**
    * The attributes that should be hidden for serialization.
@@ -43,13 +34,39 @@ class User extends Authenticatable {
     'email_verified_at' => 'datetime',
   ];
 
+
+  /**
+   * Accessor - when we access to the property show it in this specific format.
+   *
+   * @param $username
+   *
+   * @return string
+   */
+  public function getUsernameAttribute($username) {
+    return ucwords($username);
+  }
+
+  //
+  /**
+     * Mutator - when password is saved change it - in our case encrypt the password.
+     * NAMING CONVENTION!! set{fieldName}Attribute.
+
+     * @param $password
+     *
+     * @return void
+     */
+  public function setPasswordAttribute($password) {
+    // Mutating the value before it's saved.
+    $this->attributes['password'] = bcrypt($password);
+  }
+
   /**
    * Get the related blog posts from this user.
    *
    * @return \Illuminate\Database\Eloquent\Relations\HasMany
    */
   public function blogPosts(): HasMany {
-    return $this->hasMany(BlogPosts::class,'author_id');
+    return $this->hasMany(BlogPosts::class, 'author_id');
   }
 
 }

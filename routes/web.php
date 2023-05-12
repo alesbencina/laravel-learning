@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
 use App\Models\BlogPosts;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-  return view('welcome');
+  return redirect()->route('home');
 });
 
 Route::get('blog-posts', function () {
@@ -25,15 +28,13 @@ Route::get('blog-posts', function () {
   DB::listen(function ($query) {
     logger($query->sql, $query->bindings);
   });
-
-  // Eager loading.
-  // Reduce the numbers of sql queries.
-  $posts = BlogPosts::latest('updated_at')->with('tag','author')->get();
-  #$posts = BlogPosts::All();
+  $posts = BlogPosts::latest('updated_at')->with('tag', 'author')->get();
   return view('blog-posts', [
     'posts' => $posts,
+    'authors' => User::all(),
+    'tags' => Tag::all(),
   ]);
-});
+})->name('home');
 
 // blog_posts table: column
 // similar like firstOfFail
@@ -53,7 +54,7 @@ Route::get('tag/{tag:url_alias}', function (Tag $tag) {
   //$post = BlogPosts::findBySlugOrFail($slug);
   return view('tag-detail-page', [
     'posts' => $tag->blogposts,
-    'tag' => $tag
+    'tag' => $tag,
   ]);
 
 });
@@ -62,7 +63,14 @@ Route::get('authors/{author:username}', function (\App\Models\User $author) {
   //$post = BlogPosts::findBySlugOrFail($slug);
   return view('author-detail-page', [
     'posts' => $author->blogPosts,
-    'author' => $author
+    'author' => $author,
   ]);
 
 });
+
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::get('login', [SessionController::class, 'create'])->middleware('guest');
+Route::post('login', [SessionController::class, 'login'])->middleware('guest');
+Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');

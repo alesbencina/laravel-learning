@@ -18,5 +18,7 @@
             {{ $comment->body }}
         </p>
     </div>
-    <x-comment.delete-form :comment="$comment"/>
+    @auth
+        <x-comment.delete-form :comment="$comment"/>
+    @endauth
 </article>

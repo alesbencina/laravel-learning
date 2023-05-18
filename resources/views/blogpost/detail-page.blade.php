@@ -52,9 +52,11 @@
 
         </div>
 
-        <div class="col-span-8 col-start-5 mt-10 space-y-6">
-            <x-comment.form :post="$post"/>
-        </div>
+        @auth
+            <div class="col-span-8 col-start-5 mt-10 space-y-6">
+                <x-comment.form :post="$post"/>
+            </div>
+        @endauth
         @if($comments->count() > 1)
         <div class="col-span-8 col-start-5 mt-10 space-y-6">
             <x-comment.grid :comments="$comments"/>

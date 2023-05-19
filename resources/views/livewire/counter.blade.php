@@ -1,0 +1,9 @@
+<div>
+    <div style="text-align: center">
+
+        <button wire:click="increment">+</button>
+
+        <h1>{{ $authId }}</h1>
+
+    </div>
+</div>

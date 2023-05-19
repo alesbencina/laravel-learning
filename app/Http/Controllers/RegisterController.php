@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 class RegisterController extends Controller {
 
   public function create() {
-    return view('register.create');
+    return view('livewire.register.form');
   }
 
   public function store() {

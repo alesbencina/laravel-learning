@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller {
 
   public function create() {
-    return view('livewire.register.form');
+    return view('register.create');
   }
 
   public function store() {

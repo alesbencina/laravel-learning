@@ -82,8 +82,6 @@ Route::get('authors/{author:username}', function (\App\Models\User $author) {
 
 Route::get('register', [RegisterController::class, 'create'])
   ->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])
-  ->middleware('guest');
 
 Route::get('login', [SessionController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionController::class, 'login'])->middleware('guest');

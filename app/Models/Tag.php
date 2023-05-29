@@ -9,7 +9,8 @@ class Tag extends Model
 {
     use HasFactory;
 
-    public function blogposts() {
-      return $this->hasMany(BlogPosts::class);
+    public function blogposts()
+    {
+        return $this->hasMany(BlogPosts::class);
     }
 }

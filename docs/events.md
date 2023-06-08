@@ -29,7 +29,21 @@ Laravel Observers are used to group event listeners for a model eloquent. Larave
 You can use php artisan command: `php artisan make:observer` and prompt the observer name and the model.
 After that you have to  update the app/Providers/EventServiceProvider.php boot method to tell laravel that you want to obeserve the behavior of comment model - `Comment::observe(OnCommentInsert::class);`
 
+#### Eloquent hooks
+* Retrieved: after a record has been retrieved.
+* Creating: before a record has been created.
+* Created: after a record has been created.
+* Updating: before a record is updated.
+* Updated: after a record has been updated.
+* Saving: before a record is saved (either created or updated).
+* Saved: after a record has been saved (either created or updated).
+* Deleting: before a record is deleted or soft-deleted.
+* Deleted: after a record has been deleted or soft-deleted.
+* Restoring: before a soft-deleted record is going to be restored.
+* Restored: after a soft-deleted record has been restored.
 
 
 Some helpful tips:
 Use observers for events that could happen on the model level, such as created, updated, deleted, restored or forceDeleted.
+Keep the code clean.
+

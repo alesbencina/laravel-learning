@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CommentCreated;
 use App\Models\BlogPosts;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,9 @@ class BlogPostController extends Controller
             'user_id' => Auth::id(),
             'blog_posts_id' => $blogPosts->id,
         ]);
+
+        CommentCreated::dispatch($blogPosts, $comment);
+      //event(new CommentCreated($blogPosts, $comment));
 
         return redirect("/blog-posts/$blogPosts->url_alias")->with('success', "Comment successfully added ($comment->id).");
 

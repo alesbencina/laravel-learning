@@ -4,38 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Validation\ValidationException;
 
-class SessionController extends Controller
-{
-    public function destroy()
-    {
-        auth()->logout();
+class SessionController extends Controller {
 
-        return redirect('/')->with('success', 'Logged out');
+  public function destroy() {
+    auth()->logout();
+
+    return redirect('/')->with('success', 'Logged out');
+  }
+
+  public function login() {
+    // Authenticate and login the user based on creds.
+    $attributes = request()->validate([
+      'email' => 'required',
+      'password' => 'required',
+    ]);
+
+    if (!auth()->attempt($attributes)) {
+      throw ValidationException::withMessages([
+        'email' => 'The login failed.',
+      ]);
     }
 
-    public function login()
-    {
-        // Authenticate and login the user based on creds.
-        $attributes = request()->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+    // Session injection.
+    session()->regenerate();
 
-        if (! auth()->attempt($attributes)) {
-            throw ValidationException::withMessages([
-                'email' => 'The login failed.',
-            ]);
-        }
-
-        // Session injection.
-        session()->regenerate();
-
-        return redirect('/blog-posts')->with('success', 'Welcome back');
-        //return back()->withErrors(['email' => 'The login failed.']);
+    // Redirect the user if it's admin.
+    if (auth()->user()->hasRole('admin')) {
+      return redirect('/dashboard');
     }
 
-    public function create()
-    {
-        return view('sessions.create');
-    }
+    return redirect('/blog-posts')->with('success', 'Welcome back');
+    //return back()->withErrors(['email' => 'The login failed.']);
+  }
+
+  public function create() {
+    return view('sessions.create');
+  }
+
 }

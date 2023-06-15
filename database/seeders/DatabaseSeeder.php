@@ -38,5 +38,9 @@ class DatabaseSeeder extends Seeder
 
         // Create 5 random blog posts and diffrent users, tags.
         BlogPosts::factory(5)->create();
+
+      $this->call([
+        RolesPermissionSeeder::class,
+      ]);
     }
 }

@@ -1,4 +1,4 @@
-<x-layout>
+<x-layouts.app>
     <main class="max-w-lg mx-auto mt-10">
         <h1 class="text-center font-bold text-xl ">Login</h1>
         <form method="POST" action="/login" class="mt-10 bg-gray-50 p-6 rounded-xl">
@@ -48,4 +48,4 @@
         </form>
     </main>
 
-</x-layout>
+</x-layouts.app>

@@ -1,3 +1,3 @@
-<x-layout>
+<x-layouts.app>
     <x-comment-grid/>
-</x-layout>
+</x-layouts.app>

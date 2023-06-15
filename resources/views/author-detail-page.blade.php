@@ -1,4 +1,4 @@
-<x-layout>
+<x-layouts.app>
     <div>
         <h1>Author: {{$author->name}}</h1>
     </div>
@@ -15,5 +15,5 @@
             </article>
         @endforeach
 
-</x-layout>
+</x-layouts.app>
 

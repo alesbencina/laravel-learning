@@ -1,4 +1,4 @@
-<x-layout>
+<x-layouts.app>
     {{ $tag->name }}
     @foreach($posts as $post)
         <article id="{{ $post->id }}">
@@ -9,5 +9,5 @@
             <a href="/blog-posts/{{ $post->url_alias }}">{{ $post->title }}</a>
         </article>
     @endforeach
-</x-layout>
+</x-layouts.app>
 

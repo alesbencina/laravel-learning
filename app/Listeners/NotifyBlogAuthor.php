@@ -6,29 +6,30 @@ use App\Events\CommentCreated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class NotifyBlogAuthor implements ShouldQueue {
+class NotifyBlogAuthor implements ShouldQueue
+{
+    use InteractsWithQueue;
 
-  use InteractsWithQueue;
+    public $job;
 
-  public $job;
+    /**
+     * Create the event listener.
+     */
+    public function __construct()
+    {
+        //
+    }
 
+    /**
+     * Handle the event.
+     */
+    public function handle(CommentCreated $event): void
+    {
+        $test = 0;
+    }
 
-  /**
-   * Create the event listener.
-   */
-  public function __construct() {
-    //
-  }
-
-  /**
-   * Handle the event.
-   */
-  public function handle(CommentCreated $event): void {
-    $test = 0;
-  }
-
-  public function attempts() {
-    return 5;
-  }
-
+    public function attempts()
+    {
+        return 5;
+    }
 }

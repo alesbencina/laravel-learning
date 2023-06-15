@@ -19,7 +19,7 @@ class OnCommentInsert
      */
     public function updated(Comment $comment): void
     {
-      $a = 0;
+        $a = 0;
     }
 
     /**

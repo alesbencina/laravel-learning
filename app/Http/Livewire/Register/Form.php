@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Register;
 
 use App\Models\User;
+use App\Permissions\Roles;
 use Livewire\Component;
 
 class Form extends Component
@@ -40,13 +41,12 @@ class Form extends Component
         $validatedData = $this->validate();
 
         $user = User::create($validatedData);
+        $user->assignRole(Roles::WRITER);
 
-        //session()->flash('success', 'Account created');
         // Log the user in.
-
         auth()->login($user);
 
-        return redirect('/blog-posts')->with('success', 'Account created');
+        return redirect('/blog-posts')->with('success', 'Account created and assigned role'.Roles::WRITER);
     }
 
     public function render()

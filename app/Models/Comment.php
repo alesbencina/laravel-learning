@@ -22,5 +22,4 @@ class Comment extends Model
     {
         return $this->belongsTo(BlogPosts::class);
     }
-
 }

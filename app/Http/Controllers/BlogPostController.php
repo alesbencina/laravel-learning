@@ -7,38 +7,40 @@ use App\Models\BlogPosts;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
-class BlogPostController extends Controller {
+class BlogPostController extends Controller
+{
+    public function show(BlogPosts $blogPosts)
+    {
+        return view('blogpost/detail-page', [
+            'post' => $blogPosts,
+            'comments' => $blogPosts->comments,
+        ]
+        );
+    }
 
-  public function show(BlogPosts $blogPosts) {
-    return view('blogpost/detail-page', [
-        'post' => $blogPosts,
-        'comments' => $blogPosts->comments,
-      ]
-    );
-  }
+    public function createComment(BlogPosts $blogPosts)
+    {
+        $attributes = request()->validate([
+            'body' => 'required|min:10',
+        ]);
 
-  public function createComment(BlogPosts $blogPosts) {
-    $attributes = request()->validate([
-      'body' => 'required|min:10',
-    ]);
+        $comment = Comment::create([
+            'body' => $attributes['body'],
+            'user_id' => Auth::id(),
+            'blog_posts_id' => $blogPosts->id,
+        ]);
 
-    $comment = Comment::create([
-      'body' => $attributes['body'],
-      'user_id' => Auth::id(),
-      'blog_posts_id' => $blogPosts->id,
-    ]);
+        CommentCreated::dispatch($blogPosts, $comment);
+        //event(new CommentCreated($blogPosts, $comment));
 
-    CommentCreated::dispatch($blogPosts, $comment);
-    //event(new CommentCreated($blogPosts, $comment));
+        return redirect("/blog-posts/$blogPosts->url_alias")->with('success', "Comment successfully added ($comment->id).");
 
-    return redirect("/blog-posts/$blogPosts->url_alias")->with('success', "Comment successfully added ($comment->id).");
+    }
 
-  }
+    public function deleteComment(Comment $comment)
+    {
+        $comment->delete();
 
-  public function deleteComment(Comment $comment) {
-    $comment->delete();
-
-    return back()->with('success', "Comment deleted ($comment->id).");
-  }
-
+        return back()->with('success', "Comment deleted ($comment->id).");
+    }
 }

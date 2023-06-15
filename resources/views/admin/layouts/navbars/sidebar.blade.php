@@ -40,8 +40,11 @@
                 </a>
             </li>
 
-            <li class="nav-item mt-2">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laravel Examples</h6>
+            <li class="nav-item pb-2">
+                <a class="nav-link {{ Route::currentRouteName() == 'admin_users' ? 'active' : '' }}"
+                   href="{{ route('admin_users') }}">
+                    <span class="nav-link-text ms-1">Users</span>
+                </a>
             </li>
 
         </ul>

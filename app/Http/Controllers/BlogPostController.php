@@ -43,6 +43,4 @@ class BlogPostController extends Controller
 
         return back()->with('success', "Comment deleted ($comment->id).");
     }
-
-
 }

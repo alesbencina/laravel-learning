@@ -27,21 +27,14 @@
                                 >
                                 @error('title') <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
-{{--                            Use wire-ignore for ckeditor, because it dissapears--}}
+                            {{--                            Use wire-ignore for ckeditor, because it dissapears--}}
                             <div wire:ignore class="form-group">
                                 <label for="description" class="form-control-label">{{ __('Description') }}</label>
                                 <textarea
                                         class="ckeditor form-control"
-                                        name="description"
+                                        id="ckeditor"
                                         wire:model="description"
-                                        wire:key="ckeditor-1"
-                                        x-data
-                                        x-init="
-                                          CKEDITOR.replace('description');
-                                          CKEDITOR.instances.description.on('change', function() {
-                                            $dispatch('input', this.getData());
-                                          });"
-                                ></textarea>
+                                >{{ $description }}</textarea>
 
                                 @error('description') <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -61,3 +54,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    ClassicEditor.create(document.querySelector('#ckeditor'), {
+        codeBlock: {
+            languages: [
+                // Do not render the CSS class for the plain text code blocks.
+                { language: 'plaintext', label: 'Plain text', class: '' },
+
+                // Use the "php-code" class for PHP code blocks.
+                { language: 'php', label: 'PHP', class: 'php-code' },
+
+                // Use the "js" class for JavaScript code blocks.
+                // Note that only the first ("js") class will determine the language of the block when loading data.
+                { language: 'javascript', label: 'JavaScript', class: 'language-html' },
+
+                // Python code blocks will have the default "language-python" CSS class.
+                { language: 'python', label: 'Python' }
+            ]
+        }
+    })
+        .then(editor => {
+            editor.model.document.on('change:data', () => {
+            @this.set('description', editor.getData());
+            });
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

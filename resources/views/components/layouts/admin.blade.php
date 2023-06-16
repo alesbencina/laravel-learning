@@ -29,7 +29,7 @@
 
     <!-- Alpine -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="{{ asset('assets/js/plugins/cke5/build/ckeditor.js') }}"></script>
 
     @livewireStyles
 </head>

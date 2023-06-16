@@ -45,10 +45,9 @@
                 {{ $post->title }}!
             </h1>
 
-            <div class="space-y-4 lg:text-lg leading-loose">
+            <div class="space-y-4 lg:text-lg leading-loose ck-content">
                 {!! $post->description !!}
             </div>
-
 
         </div>
 
@@ -67,6 +66,6 @@
             </div>
         @endif
     </article>
-
+    <script>hljs.highlightAll();</script>
 </x-layouts.app>
 

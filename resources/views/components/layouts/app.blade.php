@@ -5,6 +5,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <head>
+
+    <link rel="stylesheet" href="{{ asset("assets/css/ckeditor.css") }}" type="text/css">
+
+
+    <script src="{{ asset('assets/js/plugins/highlight/highlight/highlight.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/highlight/highlight/languages/css.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/highlight/highlight/styles/github-dark.min.css') }}" type="text/css">
+
     @livewireStyles
 </head>
 <body style="font-family: Open Sans, sans-serif">

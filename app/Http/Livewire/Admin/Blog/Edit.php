@@ -4,40 +4,37 @@ namespace App\Http\Livewire\Admin\Blog;
 
 use Livewire\Component;
 
-class Edit extends Component
-{
-    public $post;
+class Edit extends Component {
 
-    public string $title;
+  public $post;
 
-    public string $description;
+  public string $title;
 
-    protected $rules = [
-        'title' => 'required',
-        'description' => 'required',
-    ];
+  public string $description;
 
-    public function mount()
-    {
-        $this->title = $this->post->title;
-        $this->description = $this->post->description;
-    }
+  protected $rules = [
+    'title' => 'required',
+    'description' => 'required',
+  ];
 
-    public function render()
-    {
-        return view('livewire.admin.blog.edit');
-    }
+  public function mount() {
+    $this->title = $this->post->title;
+    $this->description = $this->post->description;
+  }
 
-    public function update()
-    {
-        $this->post->title = $this->title;
-        $this->post->description = $this->description;
-        $this->post->save();
-        session()->flash('message', 'Post successfully updated.');
-    }
+  public function render() {
+    return view('livewire.admin.blog.edit');
+  }
 
-    public function backToOverview()
-    {
-        return $this->redirect('/dashboard');
-    }
+  public function update() {
+    $this->post->title = $this->title;
+    $this->post->description = $this->description;
+    $this->post->save();
+    session()->flash('message', 'Post successfully updated.');
+  }
+
+  public function backToOverview() {
+    return $this->redirect('/dashboard');
+  }
+
 }

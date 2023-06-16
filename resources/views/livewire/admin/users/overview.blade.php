@@ -44,7 +44,8 @@
                                                 {{$role->name}}
                                             @empty
                                                 No role assigned
-                                            @endforelse</p>
+                                            @endforelse
+                                        </p>
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                         <span class="badge badge-sm bg-gradient-success">Online</span>

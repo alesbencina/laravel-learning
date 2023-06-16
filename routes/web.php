@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Http\Livewire\Admin\Blog\Edit;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\UsersOverview;
 use App\Models\BlogPosts;
@@ -102,6 +104,11 @@ Route::prefix('admin')->group(function () {
       UsersOverview::class,
       'render',
     ])->name('admin_users');
+
+    Route::get('/edit-blog/{blog_posts:id}', [
+      BlogController::class,
+      'index'
+    ])->name('Edit blog post');
   });
 });
 

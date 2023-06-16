@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Admin\Blog;
 
-use App\Models\BlogPosts;
 use Livewire\Component;
 
 class Edit extends Component {
@@ -10,6 +9,7 @@ class Edit extends Component {
   public $post;
 
   public string $title;
+
   public string $description;
 
   protected $rules = [
@@ -31,6 +31,10 @@ class Edit extends Component {
     $this->post->description = $this->description;
     $this->post->save();
     session()->flash('message', 'Post successfully updated.');
+  }
+
+  public function backToOverview() {
+    return $this->redirect('/dashboard');
   }
 
 }

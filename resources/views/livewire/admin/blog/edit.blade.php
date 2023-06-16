@@ -13,7 +13,6 @@
                     @endif
                 </div>
 
-
                 <form wire:submit.prevent="update">
                     @csrf
                     <div class="row">
@@ -46,12 +45,14 @@
 
                                 @error('description') <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
+                            <div class="d-flex justify-content-between">
+                                <button wire:click="backToOverview" class="btn btn-simple">Back to overview</button>
 
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
                         </div>
 
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
+
                     </div>
 
                 </form>

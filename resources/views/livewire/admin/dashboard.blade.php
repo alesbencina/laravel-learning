@@ -89,7 +89,7 @@
 
                                             <td class="align-middle">
                                                 <div class="progress-wrapper w-75 mx-auto">
-                                                    <span class="text-xs font-weight-bold">{{ $blogPost->status }}</span>
+                                                    <span class="text-xs font-weight-bold">{{ $blogPost->transformToString($blogPost->status) }}</span>
                                                 </div>
                                             </td>
                                             <td class="align-middle">

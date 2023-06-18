@@ -38,13 +38,32 @@
 
                                 @error('description') <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <button wire:click="backToOverview" class="btn btn-simple">Back to overview</button>
 
-                                <button type="submit" class="btn btn-success">Save</button>
+                            <div class="form-group">
+
+                                <div class="form-check form-switch">
+                                    <input wire:model="status" class="form-check-input" type="checkbox" id="status"
+                                           checked="">
+                                    <label class="form-check-label" for="rememberMe">Published</label>
+                                </div>
+
+                                @error('status') <span class="text-danger">{{ $message }}</span>@enderror
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <button wire:click="backToOverview" class="btn btn-simple">Back to overview</button>
+                                    <a href="/blog-posts/{{ $slug }}" class="btn btn--tiny" target="_blank">View on
+                                        frontend</a>
+
+                                </div>
+
+                                <div class="right-0">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+
                             </div>
                         </div>
-
 
                     </div>
 
@@ -54,25 +73,35 @@
         </div>
     </div>
 </div>
-
 <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Scroll on top when the node is updated.
+        Livewire.on('gotoTop', () => {
+            window.scrollTo({
+                top: 15,
+                left: 15,
+                behaviour: 'smooth'
+            })
+        });
+
+    });
     ClassicEditor.create(document.querySelector('#ckeditor'), {
+        simpleUpload: {
+            uploadUrl: "{{route('file.upload', ['_token' => csrf_token() ])}}",
+        },
         codeBlock: {
             languages: [
-                // Do not render the CSS class for the plain text code blocks.
-                { language: 'plaintext', label: 'Plain text', class: '' },
-
                 // Use the "php-code" class for PHP code blocks.
-                { language: 'php', label: 'PHP', class: 'php-code' },
+                {language: 'php', label: 'PHP', class: 'php-code'},
+                {language: 'plaintext', label: 'Plain text', class: ''},
 
                 // Use the "js" class for JavaScript code blocks.
                 // Note that only the first ("js") class will determine the language of the block when loading data.
-                { language: 'javascript', label: 'JavaScript', class: 'language-html' },
+                {language: 'javascript', label: 'JavaScript', class: 'language-html'},
 
-                // Python code blocks will have the default "language-python" CSS class.
-                { language: 'python', label: 'Python' }
             ]
-        }
+        },
     })
         .then(editor => {
             editor.model.document.on('change:data', () => {
@@ -82,4 +111,7 @@
         .catch(error => {
             console.error(error);
         });
+
+
 </script>
+

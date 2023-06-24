@@ -16,12 +16,12 @@
         </section>
 
         @auth
-            <div class="col-span-8 col-start-5 mt-10 space-y-6">
+            <div class="col-span-8 col-start-5 mt-10 space-y-6 max-w-4xl mx-auto">
                 <x-comment.form :post="$post"/>
             </div>
         @endauth
-        @if ($comments->count() > 1)
-            <div class="col-span-8 col-start-5 mt-10 space-y-6">
+        @if ($comments->count() >= 1)
+            <div class="col-span-8 col-start-5 mt-10 space-y-6 max-w-4xl mx-auto">
                 <x-comment.grid :comments="$comments"/>
             </div>
         @else

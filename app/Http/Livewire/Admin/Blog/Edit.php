@@ -16,6 +16,8 @@ class Edit extends Component {
 
   public string $slug;
 
+  public string $summary;
+
   protected $rules = [
     'title' => 'required',
     'description' => 'required',
@@ -26,6 +28,7 @@ class Edit extends Component {
     $this->description = $this->post->description;
     $this->status = $this->post->status;
     $this->slug = $this->post->url_alias;
+    $this->summary = $this->post->summary;
   }
 
   public function render() {
@@ -36,6 +39,7 @@ class Edit extends Component {
     $this->post->title = $this->title;
     $this->post->description = $this->description;
     $this->post->status = $this->status;
+    $this->post->summary = $this->summary;
     $this->post->save();
     session()->flash('message', 'Post successfully updated.');
     $this->emit('gotoTop');

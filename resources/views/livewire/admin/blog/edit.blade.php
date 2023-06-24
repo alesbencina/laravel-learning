@@ -16,7 +16,7 @@
                 <form wire:submit.prevent="update">
                     @csrf
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-lg-12 col-md-12">
                             <div class="form-group">
                                 <label for="title" class="form-control-label">{{ __('Title') }}</label>
                                 <input class="form-control"
@@ -27,7 +27,7 @@
                                 >
                                 @error('title') <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
-                            {{--                            Use wire-ignore for ckeditor, because it dissapears--}}
+                            {{-- Use wire-ignore for ckeditor, because it dissapears--}}
                             <div wire:ignore class="form-group">
                                 <label for="description" class="form-control-label">{{ __('Description') }}</label>
                                 <textarea
@@ -37,6 +37,35 @@
                                 >{{ $description }}</textarea>
 
                                 @error('description') <span class="text-danger">{{ $message }}</span>@enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title" class="form-control-label">{{ __('Summary') }}</label>
+                                
+                                <textarea
+                                        class="form-control"
+                                        id="summary"
+                                        wire:model="summary"
+                                >{{ $description }}</textarea>
+                                <small>{{ __('The text used on the blog teasers overview and seo description metatag.')}}</small>
+                                @error('summary') <span class="text-danger">{{ $message }}</span>@enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title" class="form-control-label">{{ __('Tags') }}</label>
+                                <select
+                                data-te-select-init
+                                    name="tags" 
+                                    id="tags" 
+                                    multiple
+                                    class="form-control"
+                                >
+                                    <option value="volvo">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                                @error('tags') <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
 
                             <div class="form-group">

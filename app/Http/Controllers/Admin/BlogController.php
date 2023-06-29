@@ -13,4 +13,9 @@ class BlogController extends Controller
             'post' => $blogPosts,
         ]);
     }
+
+  public function create()
+  {
+    return view('admin.blog.create');
+  }
 }

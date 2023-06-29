@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\ImageUploadController;
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
-use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Admin\Blog\Dashboard;
 use App\Http\Livewire\UsersOverview;
 use App\Models\BlogPosts;
 use App\Models\Tag;
@@ -110,6 +110,10 @@ Route::prefix('admin')->group(function () {
       'index',
     ])->name('Edit blog post');
 
+    Route::get('/create-blog', [
+      BlogController::class,
+      'render',
+    ])->name('Create blog post');
 
   });
 

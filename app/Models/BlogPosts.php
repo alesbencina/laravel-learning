@@ -15,7 +15,14 @@ class BlogPosts extends Model {
   // used for security purposes
   // for example: account status, role, ids
   // "mass assignemnt vulnerbiltiy"
-  protected $fillable = ['title', 'description', 'url_alias', 'tag_id'];
+  protected $fillable = [
+    'title',
+    'description',
+    'url_alias',
+    'tag_id',
+    'author_id',
+    'summary'
+  ];
 
   //#2 All is fillable except what is guarded.
   protected $guarded = ['id'];

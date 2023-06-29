@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\Blog;
 
 use App\Models\BlogPosts;
 use Livewire\Component;
@@ -20,7 +20,7 @@ class Dashboard extends Component
 
     public function render()
     {
-        return view('livewire.admin.dashboard', [
+        return view('livewire.admin.blog.dashboard', [
             'blogPosts' => BlogPosts::paginate($this->itemsPerPage),
         ]);
     }

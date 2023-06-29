@@ -14,7 +14,7 @@ class Edit extends Component {
 
   public bool $status;
 
-  public string $slug;
+  public string $url_alias;
 
   public string $summary;
 
@@ -27,7 +27,7 @@ class Edit extends Component {
     $this->title = $this->post->title;
     $this->description = $this->post->description;
     $this->status = $this->post->status;
-    $this->slug = $this->post->url_alias;
+    $this->url_alias = $this->post->url_alias;
     $this->summary = $this->post->summary;
   }
 
@@ -35,11 +35,12 @@ class Edit extends Component {
     return view('livewire.admin.blog.edit');
   }
 
-  public function update() {
+  public function store() {
     $this->post->title = $this->title;
     $this->post->description = $this->description;
     $this->post->status = $this->status;
     $this->post->summary = $this->summary;
+    $this->post->url_alias = $this->url_alias;
     $this->post->save();
     session()->flash('message', 'Post successfully updated.');
     $this->emit('gotoTop');

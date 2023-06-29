@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire\Admin\Blog;
 
+use App\Models\BlogPosts;
 use Livewire\Component;
+use Illuminate\Validation\Rule;
 
 class Edit extends Component {
 
-  public $post;
+  public BlogPosts $post;
 
   public string $title;
 
@@ -18,10 +20,18 @@ class Edit extends Component {
 
   public string $summary;
 
-  protected $rules = [
-    'title' => 'required',
-    'description' => 'required',
-  ];
+  protected function rules() {
+    return [
+      'title' => 'required',
+      'description' => 'required',
+      'url_alias' => [
+        'required',
+        Rule::unique('blog_posts', 'id')->ignore($this->post->id),
+      ],
+      'summary' => 'required',
+    ];
+
+  }
 
   public function mount() {
     $this->title = $this->post->title;
@@ -36,6 +46,7 @@ class Edit extends Component {
   }
 
   public function store() {
+    $this->validate();
     $this->post->title = $this->title;
     $this->post->description = $this->description;
     $this->post->status = $this->status;

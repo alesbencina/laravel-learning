@@ -25853,3 +25853,15 @@ pre[class*=language-] {
         display: flex;
     }
 }
+.flash-success {
+    color: white;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    padding: .5rem 1rem;
+    --tw-bg-opacity: 1;
+    background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+    border-radius: .75rem;
+    bottom: .75rem;
+    right: .75rem;
+    position: fixed;
+}

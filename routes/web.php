@@ -115,6 +115,11 @@ Route::prefix('admin')->group(function () {
       'render',
     ])->name('Create blog post');
 
+    Route::get('/delete-blog/{blog_posts:id}', [
+      BlogController::class,
+      'delete',
+    ])->name('Delete blog post');
+
   });
 
 });

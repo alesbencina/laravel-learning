@@ -35,7 +35,6 @@ class BlogPosts extends Model {
   // Third option is create a helper method that returns this data.
   protected $with = ['tag', 'author', 'comments'];
 
-
   /**
    * Transform from boolean to published or unpublished.
    */

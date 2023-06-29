@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="{{ asset("assets/css/ckeditor.css") }}" type="text/css">
 
-
     <script src="{{ asset('assets/js/plugins/highlight/highlight/highlight.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/highlight/highlight/languages/css.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/highlight/highlight/styles/github-dark.min.css') }}" type="text/css">
@@ -39,6 +38,7 @@
         </div>
 
     </nav>
+
     {{ $slot }}
 
     <footer class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
@@ -69,5 +69,5 @@
         </div>
     </footer>
 </section>
-<x-flash/>
+@include('components.flash.flash')
 </body>

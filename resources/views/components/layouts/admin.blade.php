@@ -41,7 +41,7 @@
         @include('admin.layouts.navbars.nav')
         {{ $slot }}
     </div>
-
+    @include('components.flash.admin_flash')
 </div>
 
 <!--   Core JS Files   -->

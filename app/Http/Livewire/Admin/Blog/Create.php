@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Admin\Blog;
 
 use App\Models\BlogPosts;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Validator;
 use Livewire\Component;
 
 class Create extends Component {
@@ -20,7 +22,7 @@ class Create extends Component {
   protected array $rules = [
     'title' => 'required',
     'description' => 'required',
-    'url_alias' => 'required',
+    'url_alias' => 'required|unique:blog_posts,url_alias',
     'summary' => 'required'
   ];
 
@@ -37,10 +39,11 @@ class Create extends Component {
   }
 
   public function store() {
-    $validatedData = $this->validate();
-    $validatedData['author_id'] = auth()->id();
-    BlogPosts::create($validatedData);
-    return redirect()->to('/dashboard');
+      $validatedData = $this->validate();
+      $validatedData['author_id'] = auth()->id();
+
+      BlogPosts::create($validatedData);
+      return redirect()->to('/dashboard');
   }
 
 }

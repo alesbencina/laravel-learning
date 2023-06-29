@@ -13,14 +13,19 @@
                 >
                 @error('title') <span class="text-danger">{{ $message }}</span>@enderror
             </div>
-            {{-- Use wire-ignore for ckeditor, because it dissapears--}}
-            <div wire:ignore class="form-group">
+            <div class="form-group">
                 <label for="description" class="form-control-label">{{ __('Description') }}</label>
-                <textarea
-                        class="ckeditor form-control"
-                        id="ckeditor"
-                        wire:model="description"
-                >{{ $description }}</textarea>
+                {{-- Use wire-ignore for ckeditor, because it dissapears--}}
+                <div wire:ignore>
+                         <textarea
+                                 class="ckeditor form-control"
+                                 id="ckeditor"
+                                 wire:model="description"
+                                 name="description"
+                         >
+                             {{ $description }}
+                         </textarea>
+                </div>
 
                 @error('description') <span class="text-danger">{{ $message }}</span>@enderror
             </div>
@@ -32,6 +37,7 @@
                         class="form-control"
                         id="summary"
                         wire:model="summary"
+                        name="summary"
                 >{{ $summary }}</textarea>
                 <small>{{ __('The text used on the blog teasers overview and seo description metatag.')}}</small>
                 @error('summary') <span class="text-danger">{{ $message }}</span>@enderror

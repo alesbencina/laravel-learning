@@ -84,6 +84,12 @@
                                                     Edit
                                                 </a>
                                             </td>
+                                            <td class="align-middle">
+                                                <a href="/admin/delete-blog/{{ $blogPost->id }}" class="text-danger font-weight-bold text-xs"
+                                                   data-toggle="tooltip" data-original-title="Delete blog">
+                                                    Delete
+                                                </a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

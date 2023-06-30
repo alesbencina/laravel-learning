@@ -3,16 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
+/**
+ * Provides registration controller.
+ */
 class RegisterController extends Controller
 {
-    public function create()
+
+  /**
+   * Returns a registration form.
+   *
+   * @return \Illuminate\View\View
+   *   Returns a registration form view.
+   */
+    public function create(): View
     {
         return view('register.create');
     }
 
-    public function store()
+  /**
+   * Register the user and automatically log it.
+   *
+   * @return \Illuminate\Http\RedirectResponse
+   *   Return logged user to homepage.
+   */
+    public function store(): RedirectResponse
     {
         $validation = request()->validate([
             'name' => 'required|min:3',

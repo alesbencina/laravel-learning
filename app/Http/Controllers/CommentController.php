@@ -8,6 +8,9 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Provides CommentController.
+ */
 class CommentController extends Controller
 {
 

@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Admin\Blog;
 
 use App\Models\BlogPosts;
 use App\Models\Tag;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
 

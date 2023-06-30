@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ImageUploadController extends Controller {
 
+  /**
+   * @param \Illuminate\Http\Request $request
+   *
+   * @return \Illuminate\Http\JsonResponse|void
+   */
   public function storeImage(Request $request) {
     if ($request->hasFile('upload')) {
       $originName = $request->file('upload')->getClientOriginalName();

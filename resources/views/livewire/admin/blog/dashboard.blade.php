@@ -28,13 +28,13 @@
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Author
                                         </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Creation date
                                         </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Last change date
                                         </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status
                                         </th>
                                     </tr>
@@ -61,20 +61,20 @@
                                                 </div>
                                             </td>
 
-                                            <td class="align-middle">
-                                                <div class="progress-wrapper w-75 mx-auto">
+                                            <td>
+                                                <div class="progress-wrapper w-75">
                                                     <span class="text-xs font-weight-bold">{{ $blogPost->created_at }}</span>
                                                 </div>
                                             </td>
 
-                                            <td class="align-middle">
-                                                <div class="progress-wrapper w-75 mx-auto">
+                                            <td>
+                                                <div class="progress-wrapper w-75">
                                                     <span class="text-xs font-weight-bold">{{ $blogPost->updated_at }}</span>
                                                 </div>
                                             </td>
 
-                                            <td class="align-middle">
-                                                <div class="progress-wrapper w-75 mx-auto">
+                                            <td>
+                                                <div class="progress-wrapper w-75">
                                                     <span class="text-xs font-weight-bold">{{ $blogPost->transformToString($blogPost->status) }}</span>
                                                 </div>
                                             </td>
@@ -95,7 +95,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div>
+                            <div class="p-2">
                                 {{ $blogPosts->links('pagination::simple-tailwind') }}
                             </div>
 

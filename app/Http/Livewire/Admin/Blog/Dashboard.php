@@ -28,7 +28,6 @@ class Dashboard extends Component {
    *   Returns the blog posts dashboard view.
    */
   public function render(): View {
-    $a = 0;
     return view('livewire.admin.blog.dashboard', [
       'blogPosts' => BlogPosts::with('author')
         ->paginate($this->itemsPerPage),

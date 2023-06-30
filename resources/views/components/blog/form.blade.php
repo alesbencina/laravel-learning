@@ -1,6 +1,5 @@
 <form wire:submit.prevent="store">
     @csrf
-
     <div class="row justify-content-md-center ">
         <div class="col-lg-10 col-md-10">
             <div class="form-group">
@@ -31,14 +30,19 @@
             </div>
 
             <div class="form-group">
-                <label for="title" class="form-control-label">{{ __('Summary') }}</label>
+                <label for="summary" class="form-control-label">{{ __('Summary') }}</label>
+                <div wire:ignore>
+                   <textarea
+                           class="form-control"
+                           id="summary"
+                           wire:model="summary"
+                           name="summary"
+                           size="50"
+                   >
+                    {{ $summary }}
+                   </textarea>
+                </div>
 
-                <textarea
-                        class="form-control"
-                        id="summary"
-                        wire:model="summary"
-                        name="summary"
-                >{{ $summary }}</textarea>
                 <small>{{ __('The text used on the blog teasers overview and seo description metatag.')}}</small>
                 @error('summary') <span class="text-danger">{{ $message }}</span>@enderror
             </div>

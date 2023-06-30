@@ -2,16 +2,15 @@
 
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageUploadController;
-use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Livewire\Admin\Blog\Dashboard;
+use App\Http\Livewire\Frontend\Blog\Detail;
+use App\Http\Livewire\Frontend\Landing;
 use App\Http\Livewire\UsersOverview;
-use App\Models\BlogPosts;
 use App\Models\Tag;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,25 +24,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  // Debugging which sql queries are send.
-  DB::listen(function ($query) {
-    logger($query->sql, $query->bindings);
-  });
-  $posts = BlogPosts::latest('updated_at')->with('tag', 'author')->get();
+Route::get('/', Landing::class)->name('homepage');
 
-  return view('blog-posts', [
-    'posts' => $posts,
-    'authors' => User::all(),
-    'tags' => Tag::all(),
-  ]);
-})->name('home');
-
-
-Route::get('blog-posts/{blog_posts:url_alias}', [
-  BlogPostController::class,
-  'show',
-]);
+Route::get('blog-posts/{blog_posts}', function ($post) {
+  $a = 0;
+  return [
+    Detail::class,
+    'render',
+  ];
+});
 
 Route::post('blog-posts/comment/new/{blog_posts:id}', [
   CommentController::class,
@@ -74,7 +63,9 @@ Route::get('authors/{author:username}', function (User $author) {
 // Auth.
 Route::get('register', [RegisterController::class, 'create'])
   ->middleware('guest');
-Route::get('login', [SessionController::class, 'create'])->middleware('guest');
+Route::get('login', [SessionController::class, 'create'])
+  ->middleware('guest')
+  ->name('login');
 Route::post('login', [SessionController::class, 'login'])->middleware('guest');
 Route::post('logout', [SessionController::class, 'destroy'])
   ->middleware('auth');
@@ -84,7 +75,7 @@ Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
   Route::get('/dashboard', [
     Dashboard::class,
     'render',
-  ])->name('Dashboard');
+  ])->name('admin_dashboard');
 
   Route::prefix('admin')->group(function () {
     Route::get('/users', [

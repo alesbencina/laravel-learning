@@ -44,18 +44,23 @@
             </div>
 
             <div class="form-group">
-                <label for="title" class="form-control-label">{{ __('Tags') }}</label>
+                <label for="blogTags" class="form-control-label">{{ __('Tags') }}</label>
                 <select
-                        data-te-select-init
-                        name="tags"
-                        id="tags"
+                        name="blogTags"
+                        id="blogTags"
                         multiple
                         class="form-control"
+                        wire:model="blogTags"
                 >
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
+                    @foreach($tags as $id => $tag)
+
+                        <option
+                                {{ in_array($tag, $blogTags) ? 'selected' : '' }}
+                                value="{{ $id }}"
+                        >
+                            {{ $tag }}
+                        </option>
+                    @endforeach
                 </select>
                 @error('tags') <span class="text-danger">{{ $message }}</span>@enderror
             </div>

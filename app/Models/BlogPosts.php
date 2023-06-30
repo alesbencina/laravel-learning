@@ -15,13 +15,14 @@ class BlogPosts extends Model {
   // used for security purposes
   // for example: account status, role, ids
   // "mass assignemnt vulnerbiltiy"
+
   protected $fillable = [
     'title',
     'description',
     'url_alias',
     'tag_id',
     'author_id',
-    'summary'
+    'summary',
   ];
 
   //#2 All is fillable except what is guarded.
@@ -33,7 +34,7 @@ class BlogPosts extends Model {
   // Basically performs IN condition instead of WHERE tag=1 LIMIT 1; WHERE tag=2 LIMIT 1;
   // Opposite function - if you don't want tags or any relationships you can use ::without(['tag']).
   // Third option is create a helper method that returns this data.
-  protected $with = ['tag', 'author', 'comments'];
+  // protected $with = ['tag', 'author', 'comments'];
 
   /**
    * Transform from boolean to published or unpublished.
@@ -67,7 +68,7 @@ class BlogPosts extends Model {
   }
 
   public function tag() {
-    return $this->belongsTo(Tag::class);
+    return $this->belongsToMany(Tag::class, 'blog_tag','blog_id');
   }
 
   public function author() {

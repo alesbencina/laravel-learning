@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('blog_posts', function (Blueprint $table) {
-            $table->text('summary');
-        });
+      Schema::create('blog_tag', function (Blueprint $table) {
+        $table->foreignId('blog_id')->references('id')->on('blog_posts')->onDelete('cascade');
+        $table->foreignId('tag_id')->references('id')->on('tags')->onDelete('cascade');
+      });
     }
 
     /**
@@ -21,8 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('blog_posts', function (Blueprint $table) {
-            //
-        });
+      Schema::drop('blog_tag');
     }
 };

@@ -31,6 +31,6 @@ class RegisterController extends Controller
 
         auth()->login($user);
 
-        return redirect('/blog-posts')->with('success', 'Account created');
+        return redirect('/')->with('success', 'Account created');
     }
 }

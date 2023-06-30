@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageUploadController;
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Livewire\Admin\Blog\Dashboard;
@@ -25,10 +26,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-  return redirect()->route('home');
-});
-
-Route::get('blog-posts', function () {
   // Debugging which sql queries are send.
   DB::listen(function ($query) {
     logger($query->sql, $query->bindings);
@@ -42,30 +39,21 @@ Route::get('blog-posts', function () {
   ]);
 })->name('home');
 
+
 Route::get('blog-posts/{blog_posts:url_alias}', [
   BlogPostController::class,
   'show',
 ]);
 
 Route::post('blog-posts/comment/new/{blog_posts:id}', [
-  BlogPostController::class,
-  'createComment',
+  CommentController::class,
+  'store',
 ]);
 
 Route::post('blog-posts/comment/delete/{comment:id}', [
-  BlogPostController::class,
-  'deleteComment',
+  CommentController::class,
+  'destroy',
 ]);
-/*function (BlogPosts $blogPosts) {
-  //$post = BlogPosts::findBySlugOrFail($slug);
-  return view('blog-detail-page', [
-      'post' => $blogPosts,
-    ]
-  );
-});//->where('post', ['A-z_\-+']);
-*/
-// @todo can add own class?
-//->whereAlphaNumeric('post');
 
 Route::get('tag/{tag:url_alias}', function (Tag $tag) {
   //$post = BlogPosts::findBySlugOrFail($slug);
@@ -83,23 +71,22 @@ Route::get('authors/{author:username}', function (User $author) {
   ]);
 });
 
+// Auth.
 Route::get('register', [RegisterController::class, 'create'])
   ->middleware('guest');
-
 Route::get('login', [SessionController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionController::class, 'login'])->middleware('guest');
 Route::post('logout', [SessionController::class, 'destroy'])
   ->middleware('auth');
 
-// Admin dashboard.
-Route::get('/dashboard', [
-  Dashboard::class,
-  'render',
-])->middleware('auth', 'role:admin|super-admin')
-  ->name('admin_dashboard');
+// Administrator pages.
+Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
+  Route::get('/dashboard', [
+    Dashboard::class,
+    'render',
+  ])->name('Dashboard');
 
-Route::prefix('admin')->group(function () {
-  Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
+  Route::prefix('admin')->group(function () {
     Route::get('/users', [
       UsersOverview::class,
       'render',
@@ -112,7 +99,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/create-blog', [
       BlogController::class,
-      'render',
+      'create',
     ])->name('Create blog post');
 
     Route::get('/delete-blog/{blog_posts:id}', [
@@ -122,7 +109,9 @@ Route::prefix('admin')->group(function () {
 
   });
 
+  Route::post('file/upload', [ImageUploadController::class, 'storeImage'])
+    ->name('file.upload');
 });
-Route::post('file/upload', [ImageUploadController::class, 'storeImage'])
-  ->name('file.upload');
+
+
 

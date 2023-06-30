@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('tag_id');
             $table->foreignId('author_id');
             $table->boolean('status')->default(0);
+            $table->text('summary')->nullable();
             $table->timestamps();
         });
     }

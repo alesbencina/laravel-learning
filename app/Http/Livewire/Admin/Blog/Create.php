@@ -3,47 +3,38 @@
 namespace App\Http\Livewire\Admin\Blog;
 
 use App\Models\BlogPosts;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Validation\Validator;
-use Livewire\Component;
+use Illuminate\View\View;
 
-class Create extends Component {
+/**
+ * Creates a create blog form component and storing the new blog post.
+ */
+class Create extends BlogBaseComponent {
 
-  public string $title;
-
-  public string $description;
-
-  public bool $status;
-
-  public string $url_alias;
-
-  public string $summary;
-
-  protected array $rules = [
-    'title' => 'required',
-    'description' => 'required',
-    'url_alias' => 'required|unique:blog_posts,url_alias',
-    'summary' => 'required'
-  ];
-
-  public function mount() {
-    $this->title = '';
-    $this->description = '';
-    $this->status = '';
-    $this->url_alias = '';
-    $this->summary = '';
+  /**
+   * @inheritDoc
+   */
+  protected function rules(): array {
+    return parent::rules() + [
+        'url_alias' => 'required|unique:blog_posts,url_alias',
+      ];
   }
 
-  public function render() {
+  /**
+   * @inheritDoc
+   */
+  public function render(): View {
     return view('livewire.admin.blog.create');
   }
 
+  /**
+   * Store the newly created blog post.
+   */
   public function store() {
-      $validatedData = $this->validate();
-      $validatedData['author_id'] = auth()->id();
+    $validatedData = $this->validate();
+    $validatedData['author_id'] = auth()->id();
 
-      BlogPosts::create($validatedData);
-      return redirect()->to('/dashboard');
+    BlogPosts::create($validatedData);
+    return redirect()->to('/dashboard');
   }
 
 }

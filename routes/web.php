@@ -26,13 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Landing::class)->name('homepage');
 
-Route::get('blog-posts/{blog_posts}', function ($post) {
-  $a = 0;
-  return [
-    Detail::class,
-    'render',
-  ];
-});
+Route::get('/blog/{url_alias}', Detail::class)->name("Blog post detail page");
 
 Route::post('blog-posts/comment/new/{blog_posts:id}', [
   CommentController::class,

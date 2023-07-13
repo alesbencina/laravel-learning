@@ -20,9 +20,9 @@
                 <x-comment.form :post="$post"/>
             </div>
         @endauth
-        @if ($comments->count() >= 1)
+        @if ($post->comments->count() >= 1)
             <div class="col-span-8 col-start-5 mt-10 space-y-6 max-w-4xl mx-auto">
-                <x-comment.grid :comments="$comments"/>
+                @livewire('frontend.comment.grid', ['comments' => $post->comments])
             </div>
         @else
             <div>

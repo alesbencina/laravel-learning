@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Frontend\Comment;
 
-use App\Events\CommentCreated;
 use App\Models\BlogPosts;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;

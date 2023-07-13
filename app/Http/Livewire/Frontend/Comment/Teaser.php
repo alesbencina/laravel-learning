@@ -5,8 +5,7 @@ namespace App\Http\Livewire\Frontend\Comment;
 use App\Models\Comment;
 use Livewire\Component;
 
-class Teaser extends Component
-{
+class Teaser extends Component {
 
   public Comment $comment;
 
@@ -14,8 +13,8 @@ class Teaser extends Component
     $this->comment = $comment;
   }
 
-    public function render()
-    {
-        return view('livewire.frontend.comment.teaser');
-    }
+  public function render() {
+    return view('livewire.frontend.comment.teaser');
+  }
+
 }

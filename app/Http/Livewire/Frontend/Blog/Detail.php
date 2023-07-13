@@ -9,6 +9,8 @@ class Detail extends Component {
 
   public BlogPosts $post;
 
+  protected $listeners = ['refresh' => '$refresh'];
+
   public function mount(string $url_alias) {
     $this->post = BlogPosts::where("url_alias", $url_alias)->first();
   }
@@ -16,6 +18,5 @@ class Detail extends Component {
   public function render() {
     return view('livewire.frontend.blog.detail');
   }
-
 
 }

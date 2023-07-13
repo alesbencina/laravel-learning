@@ -12,7 +12,6 @@
                 <time>{{$comment->created_at->format('F j, Y, g:i a')}}</time>
             </p>
         </header>
-
         <p>
             {{ $comment->body }}
         </p>

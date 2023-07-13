@@ -32,9 +32,14 @@ class Form extends Component {
     $validatedData['blog_posts_id'] = $this->post->id;
     $comment = Comment::create($validatedData);
 
-    CommentCreated::dispatch($this->post, $comment);
+    //CommentCreated::dispatch($this->post, $comment);
+    // Emit the event to notify the comments grid component
 
-    return back()->with('success', "Comment successfully added ($comment->id).");
+    // Emit the event to notify the parent component (blog post detail page)
+    $this->emit('refresh', $comment);
+
+    // Clear the comment input field
+    $this->body = '';
   }
 
 }

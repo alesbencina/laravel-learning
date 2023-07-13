@@ -2,15 +2,17 @@
 
 namespace App\Http\Livewire\Frontend\Comment;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\BlogPosts;
 use Livewire\Component;
 
 class Grid extends Component {
 
-  public Collection $comments;
+  public $comments;
 
-  public function mount(Collection$comments) {
-    $this->comments = $comments;
+  protected $listeners = ['refresh' => '$refresh'];
+
+  public function mount($postId) {
+    $this->comments = BlogPosts::find($postId)->comments;
   }
 
   public function render() {

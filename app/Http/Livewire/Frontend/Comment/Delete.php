@@ -18,8 +18,7 @@ class Delete extends Component {
    */
   public function destroy() {
     $this->comment->delete();
-
-    return back()->with('success', "Comment deleted ($this->comment->id).");
+    $this->emit('refresh');
   }
 
 }

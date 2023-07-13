@@ -22,7 +22,7 @@
         @endauth
         @if ($post->comments->count() >= 1)
             <div class="col-span-8 col-start-5 mt-10 space-y-6 max-w-4xl mx-auto">
-                @livewire('frontend.comment.grid', ['comments' => $post->comments])
+                @livewire('frontend.comment.grid', ['postId' => $post->id], key($post->id))
             </div>
         @else
             <div>

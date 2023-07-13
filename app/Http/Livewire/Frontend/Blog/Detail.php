@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Frontend\Blog;
 
 use App\Models\BlogPosts;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class Detail extends Component {
@@ -17,5 +16,6 @@ class Detail extends Component {
   public function render() {
     return view('livewire.frontend.blog.detail');
   }
+
 
 }

@@ -3,11 +3,11 @@
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageUploadController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\SessionController;
 use App\Http\Livewire\Admin\Blog\Dashboard;
 use App\Http\Livewire\Frontend\Blog\Detail;
 use App\Http\Livewire\Frontend\Landing;
+use App\Http\Livewire\Register\Form;
+use App\Http\Livewire\Sessions\Login;
 use App\Http\Livewire\UsersOverview;
 use App\Models\Tag;
 use App\Models\User;
@@ -25,15 +25,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', Landing::class)->name('homepage');
-
 Route::get('/blog/{url_alias}', Detail::class)->name("Blog post detail page");
 
-Route::post('blog-posts/comment/new/{blog_posts:id}', [
+Route::post('blog/comment/new/{blog_posts:id}', [
   CommentController::class,
   'store',
 ]);
 
-Route::post('blog-posts/comment/delete/{comment:id}', [
+Route::post('blog/comment/delete/{comment:id}', [
   CommentController::class,
   'destroy',
 ]);
@@ -54,15 +53,16 @@ Route::get('authors/{author:username}', function (User $author) {
   ]);
 });
 
-// Auth.
-Route::get('register', [RegisterController::class, 'create'])
-  ->middleware('guest');
-Route::get('login', [SessionController::class, 'create'])
-  ->middleware('guest')
-  ->name('login');
-Route::post('login', [SessionController::class, 'login'])->middleware('guest');
-Route::post('logout', [SessionController::class, 'destroy'])
-  ->middleware('auth');
+// Explicitly leave the normal controller instead of livewire for documentation.
+// Auth controllers.
+Route::middleware(['guest'])->group(function () {
+  Route::get('register', Form::class);
+  Route::get('login', Login::class)->name('login');
+});
+
+Route::middleware(['auth'])->group(function () {
+  Route::post('logout', [Login::class, 'destroy']);
+});
 
 // Administrator pages.
 Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {

@@ -16,21 +16,21 @@ class Form extends Component
 
     public $name;
 
-    protected $rules = [
+    protected array $rules = [
         'password' => 'required',
         'email' => 'required|unique:users,email',
         'username' => 'required|max:255|unique:users,username',
         'name' => 'required|unique:users,username',
     ];
 
-    protected $messages = [
+    protected array $messages = [
         'email.required' => 'The Email Address cannot be empty.',
         'email.email' => 'The Email Address format is not valid.',
         'password.required' => 'The password is required',
         'username.required' => 'The username is required',
     ];
 
-    protected $validationAttributes = [
+    protected array $validationAttributes = [
         'email' => 'email address',
         'password' => 'password',
         'username' => 'username',
@@ -46,7 +46,7 @@ class Form extends Component
         // Log the user in.
         auth()->login($user);
 
-        return redirect('/blog-posts')->with('success', 'Account created and assigned role'.Roles::WRITER);
+        return redirect('/')->with('success', 'Account created and assigned role'.Roles::WRITER);
     }
 
     public function render()

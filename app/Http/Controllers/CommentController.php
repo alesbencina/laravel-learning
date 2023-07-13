@@ -40,7 +40,7 @@ class CommentController extends Controller
       CommentCreated::dispatch($blogPosts, $comment);
       //event(new CommentCreated($blogPosts, $comment));
 
-      return redirect("/blog-posts/$blogPosts->url_alias")->with('success', "Comment successfully added ($comment->id).");
+      return redirect("/blog/$blogPosts->url_alias")->with('success', "Comment successfully added ($comment->id).");
     }
 
     /**

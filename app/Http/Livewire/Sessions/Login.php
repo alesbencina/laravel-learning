@@ -1,24 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Livewire\Sessions;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
+use Livewire\Component;
 
-/**
- * Provides a session controller.
- */
-class SessionController extends Controller {
+class Login extends Component {
 
-  /**
-   * Returns login view.
-   *
-   * @return \Illuminate\View\View
-   *   Returns login view.
-   */
-  public function create(): View {
-    return view('sessions.create');
+  public string $email;
+
+  public string $password;
+
+  protected array $rules = [
+    'password' => 'required',
+    'email' => 'required',
+  ];
+
+  public function render() {
+    return view('livewire.sessions.login');
   }
 
   /**
@@ -29,11 +28,8 @@ class SessionController extends Controller {
    * @throws \Illuminate\Validation\ValidationException
    *   Throws a validation message that login failed.
    */
-  public function login(): RedirectResponse {
-    $validatedData = request()->validate([
-      'email' => 'required',
-      'password' => 'required',
-    ]);
+  public function login() {
+    $validatedData = $this->validate();
 
     // Try to log in the user.
     if (!auth()->attempt($validatedData)) {
@@ -47,10 +43,10 @@ class SessionController extends Controller {
 
     // Redirect the user if it's admin.
     if (auth()->user()->hasRole('admin')) {
-      return redirect('/dashboard');
+      return redirect()->to('/dashboard');
     }
 
-    return redirect('/')->with('success', 'Welcome back');
+    return redirect()->to('/')->with('success', 'Welcome back');
   }
 
   /**
@@ -59,10 +55,10 @@ class SessionController extends Controller {
    * @return \Illuminate\Http\RedirectResponse
    *   Return the redirect to homepage with message.
    */
-  public function destroy(): RedirectResponse {
+  public function destroy() {
     auth()->logout();
 
-    return redirect('/')->with('success', 'Logged out');
+    return redirect()->to('/')->with('success', 'Logged out');
   }
 
 }

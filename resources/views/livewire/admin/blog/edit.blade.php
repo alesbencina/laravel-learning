@@ -16,7 +16,7 @@
 
                 <div>
                     <button wire:click="backToOverview" class="btn">Back to overview</button>
-                    <a href="/blog-posts/{{ $url_alias }}" class="btn" target="_blank">View on
+                    <a href="/blog/{{ $url_alias }}" class="btn" target="_blank">View on
                         frontend</a>
                 </div>
             </div>

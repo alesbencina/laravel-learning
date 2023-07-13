@@ -8,7 +8,7 @@
                     {{ $post->title }}
                 </h2>
 
-                <a href="/blog-posts/{{ $post->url_alias }}">{{ $post->title }}</a>
+                <a href="/blog/{{ $post->url_alias }}">{{ $post->title }}</a>
                 <p>
                     <a href="/tag/{{ $post->tag->url_alias }}">{{ $post->tag->name }}</a>
                 </p>

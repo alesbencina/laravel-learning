@@ -1,6 +1,6 @@
 @props(['comment'])
 
-<form method="POST" action="/blog-posts/comment/delete/{{ $comment->id }}">
+<form method="POST" action="/blog/comment/delete/{{ $comment->id }}">
     @csrf
     <div class="mb-6">
         <div class="flex justify-end mt-6 pt-6 border-t border-gray-200">

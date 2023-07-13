@@ -1,6 +1,6 @@
 @props(['post'])
 
-<form method="POST" action="/blog-posts/comment/new/{{ $post->id }}">
+<form method="POST" action="/blog/comment/new/{{ $post->id }}">
     @csrf
     <div class="mb-6">
         <header class="flex items-center">

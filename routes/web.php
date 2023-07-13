@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageUploadController;
-use App\Http\Controllers\CommentController;
 use App\Http\Livewire\Admin\Blog\Dashboard;
 use App\Http\Livewire\Frontend\Blog\Detail;
 use App\Http\Livewire\Frontend\Landing;
@@ -12,7 +11,7 @@ use App\Http\Livewire\UsersOverview;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Livewire\Frontend\Comment\Form as CommentForm;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,19 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Landing::class)->name('homepage');
 Route::get('/blog/{url_alias}', Detail::class)->name("Blog post detail page");
-
-Route::post('blog/comment/new/{blog_posts:id}', [
-  CommentController::class,
-  'store',
-]);
-
-Route::post('blog/comment/delete/{comment:id}', [
-  CommentController::class,
-  'destroy',
-]);
-
 Route::get('tag/{tag:url_alias}', function (Tag $tag) {
-  //$post = BlogPosts::findBySlugOrFail($slug);
   return view('tag-detail-page', [
     'posts' => $tag->blogposts,
     'tag' => $tag,
@@ -46,7 +33,6 @@ Route::get('tag/{tag:url_alias}', function (Tag $tag) {
 });
 
 Route::get('authors/{author:username}', function (User $author) {
-  //$post = BlogPosts::findBySlugOrFail($slug);
   return view('author-detail-page', [
     'posts' => $author->blogPosts,
     'author' => $author,
@@ -62,6 +48,11 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
   Route::post('logout', [Login::class, 'destroy']);
+  Route::post('blog/comment/delete/{comment:id}', [
+    CommentForm::class,
+    'destroy',
+  ]);
+
 });
 
 // Administrator pages.

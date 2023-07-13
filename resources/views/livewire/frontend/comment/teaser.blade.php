@@ -18,6 +18,6 @@
         </p>
     </div>
     @auth
-        <x-comment.delete-form :comment="$comment"/>
+        @livewire('frontend.comment.delete', ['comment' => $comment])
     @endauth
 </article>

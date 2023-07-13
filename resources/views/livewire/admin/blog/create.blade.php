@@ -12,6 +12,7 @@
                         </div>
                     @endif
                 </div>
+
                 @include('components.blog.form')
 
                 <div>

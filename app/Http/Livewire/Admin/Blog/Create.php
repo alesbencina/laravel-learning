@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Admin\Blog;
 
 use App\Models\BlogPosts;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 /**
@@ -39,7 +38,7 @@ class Create extends BlogBaseComponent {
     // Replace only with new file.
     $post->files()->sync($this->fileModel);
     $post->save();
-    
+
     return redirect()->to('/dashboard');
   }
 

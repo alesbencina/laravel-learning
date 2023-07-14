@@ -12,7 +12,14 @@ class FileUpload extends Component {
 
   use WithFileUploads;
 
+  /**
+   * The uploaded file.
+   */
   public $file;
+
+  /**
+   * The file model.
+   */
   public File $fileModel;
 
   /**
@@ -29,7 +36,7 @@ class FileUpload extends Component {
     ];
   }
 
-  public function mount($fileModel){
+  public function mount($fileModel) {
     $this->fileModel = $fileModel;
   }
 

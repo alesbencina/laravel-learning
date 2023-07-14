@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Blog;
 
 use App\Models\BlogPosts;
+use App\Models\File;
 use App\Models\Tag;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -55,7 +56,12 @@ abstract class BlogBaseComponent extends Component {
   /**
    * The blog teaser image.
    */
-  public $fileModel;
+  public File $fileModel;
+
+  /**
+   * Listed to the file upload.
+   */
+  protected $listeners = ['fileUploaded'];
 
   /**
    * Constructs the blog post component properties.
@@ -70,7 +76,7 @@ abstract class BlogBaseComponent extends Component {
     $this->summary = '';
     $this->tags = Tag::get()->pluck('name', 'id')->toArray();
     $this->blogTags = [];
-    $this->fileModel = '';
+    $this->fileModel = new File();
   }
 
   /**
@@ -88,6 +94,17 @@ abstract class BlogBaseComponent extends Component {
    * @return \Illuminate\View\View
    */
   abstract public function render(): View;
+
+  /**
+   * Assign the file to the file model.
+   *
+   * @param $file
+   *
+   * @return void
+   */
+  public function fileUploaded($file) {
+    $this->fileModel = File::find($file['id']);
+  }
 
   /**
    * The form rules.

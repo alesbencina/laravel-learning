@@ -12,10 +12,6 @@ use Illuminate\View\View;
  */
 class Edit extends BlogBaseComponent {
 
-  protected $listeners = ['fileUploaded'];
-
-  public $fileModel;
-
   /**
    * @inheritDoc
    */
@@ -39,7 +35,7 @@ class Edit extends BlogBaseComponent {
     $this->summary = $this->post->summary ?? '';
     $this->tags = Tag::get()->pluck('name', 'id')->toArray();
     $this->blogTags = $this->post->tag()->pluck('id')->toArray();
-    $this->fileModel = $this->post->files()->first() ?? NULL;
+    $this->fileModel = $this->post->files()->first() ?? new File();
   }
 
   /**
@@ -68,9 +64,4 @@ class Edit extends BlogBaseComponent {
     session()->flash('message', 'Post successfully updated.');
     $this->emit('gotoTop');
   }
-
-  public function fileUploaded($file) {
-    $this->fileModel = File::find($file['id']);
-  }
-
 }

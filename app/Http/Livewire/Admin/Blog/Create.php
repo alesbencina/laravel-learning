@@ -30,11 +30,16 @@ class Create extends BlogBaseComponent {
   /**
    * Store the newly created blog post.
    */
-  public function store($request): RedirectResponse {
+  public function store() {
     $validatedData = $this->validate();
     $validatedData['author_id'] = auth()->id();
+    $validatedData['fileModel'] = $validatedData['fileModel']['id'];
 
-    BlogPosts::create($validatedData);
+    $post = BlogPosts::create($validatedData);
+    // Replace only with new file.
+    $post->files()->sync($this->fileModel);
+    $post->save();
+    
     return redirect()->to('/dashboard');
   }
 

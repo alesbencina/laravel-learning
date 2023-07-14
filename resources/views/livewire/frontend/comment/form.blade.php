@@ -22,7 +22,7 @@
                         wire:model.defer="body"
                 ></textarea>
                 <div> @error('body'){{ $message }}@enderror </div>
-              
+
             </div>
 
             <div class="flex justify-end mt-6 pt-6 border-t border-gray-200">

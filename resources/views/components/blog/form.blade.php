@@ -30,24 +30,6 @@
             </div>
 
             <div class="form-group">
-                <label for="summary" class="form-control-label">{{ __('Summary') }}</label>
-                <div wire:ignore>
-                   <textarea
-                           class="form-control"
-                           id="summary"
-                           wire:model="summary"
-                           name="summary"
-                           size="50"
-                   >
-                    {{ $summary }}
-                   </textarea>
-                </div>
-
-                <small>{{ __('The text used on the blog teasers overview and seo description metatag.')}}</small>
-                @error('summary') <span class="text-danger">{{ $message }}</span>@enderror
-            </div>
-
-            <div class="form-group">
                 <label for="blogTags" class="form-control-label">{{ __('Tags') }}</label>
                 <select
                         name="blogTags"
@@ -67,6 +49,30 @@
                     @endforeach
                 </select>
                 @error('tags') <span class="text-danger">{{ $message }}</span>@enderror
+            </div>
+
+            <h3>{{ __('Summary') }}</h3>
+            <div class="form-group">
+                <label for="summary" class="form-control-label">{{ __('Summary') }}</label>
+                <div wire:ignore>
+                       <textarea
+                               class="form-control"
+                               id="summary"
+                               wire:model="summary"
+                               name="summary"
+                               size="50"
+                       >
+                        {{ $summary }}
+                       </textarea>
+                </div>
+
+                <small>{{ __('The text used on the blog teasers overview and seo description metatag.')}}</small>
+                @error('summary') <span class="text-danger">{{ $message }}</span>@enderror
+            </div>
+
+            <div class="form-group">
+                <label>{{ __('Teaser image') }}</label>
+                @livewire('file-upload', ['fileModel' => $fileModel])
             </div>
 
         </div>
@@ -101,7 +107,7 @@
 
             <div class="form-group">
                 <div class="right-0">
-                    <button type="submit" class="btn btn-success">Save</button>
+                    <button class="btn btn-success">Save</button>
                 </div>
             </div>
         </div>

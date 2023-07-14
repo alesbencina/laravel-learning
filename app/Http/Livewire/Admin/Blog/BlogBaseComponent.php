@@ -6,8 +6,11 @@ use App\Models\BlogPosts;
 use App\Models\Tag;
 use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 abstract class BlogBaseComponent extends Component {
+
+  use WithFileUploads;
 
   /**
    * The related blog post.
@@ -50,6 +53,11 @@ abstract class BlogBaseComponent extends Component {
   public array $blogTags;
 
   /**
+   * The blog teaser image.
+   */
+  public $fileModel;
+
+  /**
    * Constructs the blog post component properties.
    *
    * @return void
@@ -60,8 +68,9 @@ abstract class BlogBaseComponent extends Component {
     $this->status = '';
     $this->url_alias = '';
     $this->summary = '';
-    $this->tags = Tag::get()->pluck('name','id')->toArray();
+    $this->tags = Tag::get()->pluck('name', 'id')->toArray();
     $this->blogTags = [];
+    $this->fileModel = '';
   }
 
   /**
@@ -91,6 +100,9 @@ abstract class BlogBaseComponent extends Component {
       'title' => 'required',
       'description' => 'required',
       'summary' => 'required',
+      'fileModel' => [
+        'required',
+      ]
     ];
   }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Frontend\Comment;
 
+use App\Events\CommentCreated;
 use App\Models\BlogPosts;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
@@ -31,8 +32,7 @@ class Form extends Component {
     $validatedData['blog_posts_id'] = $this->post->id;
     $comment = Comment::create($validatedData);
 
-    //CommentCreated::dispatch($this->post, $comment);
-    // Emit the event to notify the comments grid component
+    CommentCreated::dispatch($this->post, $comment);
 
     // Emit the event to notify the parent component (blog post detail page)
     $this->emit('refresh', $comment);

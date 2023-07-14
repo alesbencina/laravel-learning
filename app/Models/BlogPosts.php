@@ -79,4 +79,8 @@ class BlogPosts extends Model {
     return $this->hasMany(Comment::class, 'blog_posts_id');
   }
 
+  public function files() {
+    return $this->belongsToMany(File::class,'blog_file', 'blog_post_id');
+  }
+
 }

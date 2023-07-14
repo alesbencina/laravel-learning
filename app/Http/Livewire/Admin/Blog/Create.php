@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Blog;
 
 use App\Models\BlogPosts;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 /**
@@ -29,7 +30,7 @@ class Create extends BlogBaseComponent {
   /**
    * Store the newly created blog post.
    */
-  public function store() {
+  public function store($request): RedirectResponse {
     $validatedData = $this->validate();
     $validatedData['author_id'] = auth()->id();
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Blog;
 
+use App\Models\File;
 use App\Models\Tag;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -10,6 +11,10 @@ use Illuminate\View\View;
  * Creates an edit blog form component and storing the blog post.
  */
 class Edit extends BlogBaseComponent {
+
+  protected $listeners = ['fileUploaded'];
+
+  public $fileModel;
 
   /**
    * @inheritDoc
@@ -32,8 +37,9 @@ class Edit extends BlogBaseComponent {
     $this->status = $this->post->status;
     $this->url_alias = $this->post->url_alias;
     $this->summary = $this->post->summary ?? '';
-    $this->tags = Tag::get()->pluck('name','id')->toArray();
+    $this->tags = Tag::get()->pluck('name', 'id')->toArray();
     $this->blogTags = $this->post->tag()->pluck('id')->toArray();
+    $this->fileModel = $this->post->files()->first() ?? NULL;
   }
 
   /**
@@ -54,10 +60,17 @@ class Edit extends BlogBaseComponent {
     $this->post->summary = $this->summary;
     $this->post->url_alias = $this->url_alias;
     $this->post->tag()->attach($this->blogTags);
+
+    // Replace only with new file.
+    $this->post->files()->sync($this->fileModel);
     $this->post->save();
 
     session()->flash('message', 'Post successfully updated.');
     $this->emit('gotoTop');
+  }
+
+  public function fileUploaded($file) {
+    $this->fileModel = File::find($file['id']);
   }
 
 }

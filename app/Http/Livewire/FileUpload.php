@@ -61,7 +61,7 @@ class FileUpload extends Component {
       'path' => $filePath,
     ]);
 
-    $this->emitUp('fileUploaded', $this->fileModel);
+    $this->emit('fileUploaded', $this->fileModel);
   }
 
 }

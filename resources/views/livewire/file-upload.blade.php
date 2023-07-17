@@ -21,7 +21,7 @@
 
         @if($fileModel)
             <div class="preview">
-                <img src="{{ asset($fileModel->path) }}">
+                <img src="{{ asset($fileModel->path) }}" class="h-auto max-w-xs" width="250px">
             </div>
         @endif
     </div>

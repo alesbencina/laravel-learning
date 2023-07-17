@@ -55,8 +55,8 @@ class Edit extends BlogBaseComponent {
     $this->post->status = $this->status;
     $this->post->summary = $this->summary;
     $this->post->url_alias = $this->url_alias;
-    $this->post->tag()->attach($this->blogTags);
 
+    $this->post->tag()->sync($this->blogTags);
     // Replace only with new file.
     $this->post->files()->sync($this->fileModel);
     $this->post->save();

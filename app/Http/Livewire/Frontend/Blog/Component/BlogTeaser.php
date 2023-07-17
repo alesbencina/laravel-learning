@@ -15,7 +15,7 @@ class BlogTeaser extends Component {
   /**
    * The default class for teaser wrapper.
    */
-  public $class = 'col-span-2';
+  public string $class = 'col-span-2';
 
   /**
    * The loop iteration.

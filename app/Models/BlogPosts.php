@@ -47,28 +47,8 @@ class BlogPosts extends Model {
     return 'Published';
   }
 
-  public static function getAll() {
-    // Try caching the whole collection.
-    return cache()->rememberForever('blogposts.all', function () {
-      return collect(self::All());
-    });
-  }
-
-  public static function findBySlugOrFail(string $slug) {
-    $allPosts = self::getAll();
-    if ($allPosts->isNotEmpty()) {
-      $postWithSluge = $allPosts->firstWhere('url_alias', $slug);
-      if ($postWithSluge) {
-        return $postWithSluge;
-      }
-      throw new ModelNotFoundException('There is no post with slug found');
-    }
-
-    throw new ModelNotFoundException();
-  }
-
   public function tag() {
-    return $this->belongsToMany(Tag::class, 'blog_tag','blog_id');
+    return $this->belongsToMany(Tag::class, 'blog_tag', 'blog_id');
   }
 
   public function author() {
@@ -80,7 +60,7 @@ class BlogPosts extends Model {
   }
 
   public function files() {
-    return $this->belongsToMany(File::class,'blog_file', 'blog_post_id');
+    return $this->belongsToMany(File::class, 'blog_file', 'blog_post_id');
   }
 
 }

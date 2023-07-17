@@ -52,7 +52,7 @@ class FileUpload extends Component {
     //$this->file->storeAs('images', $file_name, 'custom_public_path');
     $filePath = "uploads/images/" . $file_name;
     $image = ResizeImage::make($this->file);
-    $image->resize(250, 250, function ($constraint) {
+    $image->resize(1000, 800, function ($constraint) {
       $constraint->aspectRatio();
     })->save($filePath);
 

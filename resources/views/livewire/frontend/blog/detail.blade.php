@@ -1,5 +1,5 @@
 <div>
-    <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <section class="flex items-center gap-4">
             <div>
                 <p class="font-medium text-gray-700">{{ $post->author->name }}</p>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Frontend;
 
-use App\Models\BlogPosts;
 use Livewire\Component;
 
 class Landing extends Component {

@@ -11,7 +11,7 @@ class Grid extends Component {
   public Collection $posts;
 
   public function mount() {
-    $this->posts = BlogPosts::all();
+    $this->posts = BlogPosts::where("status", 1)->get();
   }
 
   public function render() {

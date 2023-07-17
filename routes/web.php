@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageUploadController;
 use App\Http\Livewire\Admin\Blog\Dashboard;
+use App\Http\Livewire\Admin\Tag\Overview;
 use App\Http\Livewire\Frontend\Blog\Detail;
 use App\Http\Livewire\Frontend\Landing;
 use App\Http\Livewire\Register\Form;
@@ -12,6 +13,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontend\Comment\Form as CommentForm;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,14 +27,14 @@ use App\Http\Livewire\Frontend\Comment\Form as CommentForm;
 
 Route::get('/', Landing::class)->name('homepage');
 Route::get('/blog/{url_alias}', Detail::class)->name("Blog post detail page");
-Route::get('tag/{tag:url_alias}', function (Tag $tag) {
-  return view('tag-detail-page', [
-    'posts' => $tag->blogposts,
-    'tag' => $tag,
-  ]);
-});
+//Route::get('tag/{tag:url_alias}', function (Tag $tag) {
+//  return view('tag-detail-page', [
+//    'posts' => $tag->blogposts,
+//    'tag' => $tag,
+//  ]);
+//});
 
-Route::get('authors/{author:username}', function (User $author) {
+Route::get('/authors/{author:username}', function (User $author) {
   return view('author-detail-page', [
     'posts' => $author->blogPosts,
     'author' => $author,
@@ -42,13 +44,13 @@ Route::get('authors/{author:username}', function (User $author) {
 // Explicitly leave the normal controller instead of livewire for documentation.
 // Auth controllers.
 Route::middleware(['guest'])->group(function () {
-  Route::get('register', Form::class);
-  Route::get('login', Login::class)->name('login');
+  Route::get('/register', Form::class);
+  Route::get('/login', Login::class)->name('login');
 });
 
 Route::middleware(['auth'])->group(function () {
-  Route::post('logout', [Login::class, 'destroy']);
-  Route::post('blog/comment/delete/{comment:id}', [
+  Route::post('/logout', [Login::class, 'destroy']);
+  Route::post('/blog/comment/delete/{comment:id}', [
     CommentForm::class,
     'destroy',
   ]);
@@ -83,9 +85,15 @@ Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
       'delete',
     ])->name('Delete blog post');
 
+    Route::get('/tags-overview', [
+      \App\Http\Livewire\Admin\Tag\TagOverview::class,
+      'render',
+    ])->name("tags_overview");
+
+
   });
 
-  Route::post('file/upload', [ImageUploadController::class, 'storeImage'])
+  Route::post('/file/upload', [ImageUploadController::class, 'storeImage'])
     ->name('file.upload');
 });
 

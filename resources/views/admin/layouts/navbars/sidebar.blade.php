@@ -41,10 +41,18 @@
                 </a>
             </li>
 
+
             <li class="nav-item pb-2">
                 <a class="nav-link {{ Route::currentRouteName() == 'admin_users' ? 'active' : '' }}"
                    href="{{ route('admin_users') }}">
                     <span class="nav-link-text ms-1">Users</span>
+                </a>
+            </li>
+
+            <li class="nav-item pb-2">
+                <a class="nav-link {{ Route::currentRouteName() == 'tags_overview' ? 'active' : '' }}"
+                   href="{{ route('tags_overview') }}">
+                    <span class="nav-link-text ms-1">Tags</span>
                 </a>
             </li>
 

@@ -10,7 +10,7 @@ class FeaturedBlog extends Component {
   public BlogPosts $post;
 
   public function mount() {
-    $this->post = BlogPosts::get()->first();
+    $this->post = BlogPosts::where("status", 1)->first();
   }
 
   public function render() {

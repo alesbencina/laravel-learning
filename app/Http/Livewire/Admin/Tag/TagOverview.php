@@ -9,7 +9,7 @@ class TagOverview extends Component
 {
   public function render() {
     return view('livewire.admin.tag.tag-overview',[
-        'tags' => Tag::with([])->paginate(2)
+        'tags' => Tag::with([])->paginate(10)
       ]
     );
   }

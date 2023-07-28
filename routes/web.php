@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageUploadController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Livewire\Admin\Blog\Dashboard;
-use App\Http\Livewire\Admin\Tag\Overview;
+use App\Http\Livewire\Admin\Tag\TagOverview;
 use App\Http\Livewire\Frontend\Blog\Detail;
 use App\Http\Livewire\Frontend\Landing;
 use App\Http\Livewire\Register\Form;
@@ -86,10 +87,19 @@ Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
     ])->name('Delete blog post');
 
     Route::get('/tags-overview', [
-      \App\Http\Livewire\Admin\Tag\TagOverview::class,
+      TagOverview::class,
       'render',
     ])->name("tags_overview");
 
+    Route::get('/tag/edit/{tags:id}', [
+      TagController::class,
+      'form',
+    ])->name("tags_edit");
+
+    Route::get('/tag/add', [
+      TagController::class,
+      'form'
+    ])->name("tag_create");
 
   });
 

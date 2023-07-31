@@ -22,6 +22,9 @@ class FileUpload extends Component {
    */
   public File $fileModel;
 
+  public int $width = 1000;
+  public int $height = 800;
+
   /**
    * The form rules.
    *
@@ -36,8 +39,10 @@ class FileUpload extends Component {
     ];
   }
 
-  public function mount($fileModel) {
+  public function mount($fileModel, $width = 1000, $height = 800) {
     $this->fileModel = $fileModel;
+    $this->width = $width;
+    $this->height = $height;
   }
 
   public function render() {
@@ -49,10 +54,9 @@ class FileUpload extends Component {
     $file_name = time() . '-' . $this->file->getClientOriginalName();
 
     // Store the image on filesystem.
-    //$this->file->storeAs('images', $file_name, 'custom_public_path');
     $filePath = "uploads/images/" . $file_name;
     $image = ResizeImage::make($this->file);
-    $image->resize(1000, 800, function ($constraint) {
+    $image->resize($this->width, $this->height, function ($constraint) {
       $constraint->aspectRatio();
     })->save($filePath);
 

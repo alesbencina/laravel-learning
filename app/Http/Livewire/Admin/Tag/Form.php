@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Tag;
 
+use App\Models\File;
 use App\Models\Tag;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -12,6 +13,8 @@ class Form extends Component {
 
   public Tag $tag;
 
+  public File $fileModel;
+
   public function mount(Tag $tag) {
     if ($tag->exists) {
       $this->isNew = FALSE;
@@ -20,6 +23,24 @@ class Form extends Component {
     else {
       $this->tag = new Tag();
     }
+
+    $this->fileModel = $this->tag->files()->first() ?? new File();
+  }
+
+  /**
+   * Listed to the file upload.
+   */
+  protected $listeners = ['fileUploaded'];
+
+  /**
+   * Assign the file to the file model.
+   *
+   * @param $file
+   *
+   * @return void
+   */
+  public function fileUploaded($file) {
+    $this->fileModel = File::find($file['id']);
   }
 
   public function rules() {
@@ -39,6 +60,8 @@ class Form extends Component {
 
   public function store() {
     $this->validate();
+    // Replace only with new file.
+    $this->tag->files()->sync($this->fileModel);
     $this->tag->save();
     session()->flash('success', 'Post successfully updated.');
   }

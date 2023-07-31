@@ -23,6 +23,11 @@
                     @error('tag.url_alias') <span class="text-danger">{{ $message }}</span>@enderror
                 </div>
 
+                <div class="form-group">
+                    <label>{{ __('Logo') }}</label>
+                    @livewire('file-upload', ['fileModel' => $fileModel, 'width' => 100, 'height' => 100])
+                </div>
+
             </div>
             <div class="form-group">
                 <div class="right-0">

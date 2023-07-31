@@ -18,4 +18,8 @@ class File extends Model {
     return $this->hasMany(BlogPosts::class);
   }
 
+  public function tags() {
+    return $this->hasMany(Tag::class);
+  }
+
 }

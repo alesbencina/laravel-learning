@@ -9,7 +9,9 @@
 
         <section class="mt-8 ck-content">
             <div class="space-x-2 mt-4 mb-4 flex">
-                @livewire('frontend.tags.teaser', ['tags' => $post->tag])
+                @isset($post->tag)
+                    @livewire('frontend.tags.teaser', ['tags' => $post->tag])
+                @endisset
             </div>
             <h1 class="text-3xl font-bold mb-4">{{ $post->title }}</h1>
             <p class="text-gray-700 mb-6">
@@ -18,16 +20,16 @@
         </section>
         <div class="col-span-8 col-start-5 mt-10 space-y-6 max-w-4xl mx-auto">
 
-        @auth
+            @auth
                 @livewire('frontend.comment.form', ['post' => $post], key('form-'. $post->id))
-        @endauth
-        @if ($post->comments->count() >= 1)
+            @endauth
+            @if ($post->comments->count() >= 1)
                 @livewire('frontend.comment.grid', ['postId' => $post->id], key('grid-'.$post->id))
-        @else
-            <div>
-                No comments yet.
-            </div>
-        @endif
+            @else
+                <div>
+                    No comments yet.
+                </div>
+            @endif
         </div>
 
     </article>

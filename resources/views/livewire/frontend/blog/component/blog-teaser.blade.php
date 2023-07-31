@@ -19,7 +19,7 @@
             </div>
         </header>
 
-        <div class="space-x-2 mt-4 h-24 min-h-full">
+        <div class="space-x-2 mt-4 h-15 min-h-full">
             {{ $post->summary }}
         </div>
 
@@ -27,7 +27,7 @@
             @livewire('frontend.tags.teaser', ['tags' => $post->tag])
         </div>
 
-        <footer class="flex justify-end items-center mt-8">
+        <footer class="flex justify-end items-center">
             <div>
                 <a href="/blog/{{ $post->url_alias }}"
                    class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"

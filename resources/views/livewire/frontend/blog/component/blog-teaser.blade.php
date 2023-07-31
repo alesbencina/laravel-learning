@@ -1,7 +1,8 @@
 <div class="py-6 px-5 {{ $class }}">
     <div class="flex-1 lg:mr-8">
         <div class="relative h-0" style="padding-bottom: 66.67%;">
-            <img src="{{ asset($post->files->first()->path) }}" alt="Blog Post illustration" class="absolute inset-0 object-cover w-full h-full rounded-xl">
+            <img src="{{ asset($post->files->first()->path) }}" alt="Blog Post illustration"
+                 class="absolute inset-0 object-cover w-full h-full rounded-xl">
         </div>
     </div>
 
@@ -22,15 +23,8 @@
             {{ $post->summary }}
         </div>
 
-        <div class="space-x-2 mt-4">
-            @foreach($post->tag as $tag)
-                <a href="/tag/{{ $tag->url_alias }}"
-                   class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
-                   style="font-size: 10px">
-                    {{ $tag->name }}
-                </a>
-            @endforeach
-
+        <div class="space-x-2 mt-4 mb-4 flex">
+            @livewire('frontend.tags.teaser', ['tags' => $post->tag])
         </div>
 
         <footer class="flex justify-end items-center mt-8">

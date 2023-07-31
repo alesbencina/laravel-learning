@@ -24,16 +24,8 @@
                     {{ $post->summary }}
                 </div>
                 <div>
-                    <div class="space-x-2">
-                        @foreach($post->tag as $tag)
-                            <a href="/tag/{{ $tag->url_alias }}"
-                               class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
-                               style="font-size: 10px">
-                                {{ $tag->name }}
-                            </a>
-                        @endforeach
+                    @livewire('frontend.tags.teaser', ['tags' => $post->tag])
 
-                    </div>
                     <footer class="flex justify-end">
                         <div class="hidden lg:block">
                             <a href="/blog/{{ $post->url_alias }}"

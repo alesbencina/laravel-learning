@@ -8,11 +8,12 @@
         </section>
 
         <section class="mt-8 ck-content">
-            <div class="space-x-2 mt-4 mb-4 flex">
-                @isset($post->tag)
+            @isset($post->tag)
+                <div class="space-x-2 mt-4 mb-4 flex">
                     @livewire('frontend.tags.teaser', ['tags' => $post->tag])
-                @endisset
-            </div>
+                </div>
+            @endisset
+
             <h1 class="text-3xl font-bold mb-4">{{ $post->title }}</h1>
             <p class="text-gray-700 mb-6">
                 {!! $post->description !!}

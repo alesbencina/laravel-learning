@@ -60,10 +60,18 @@ class Form extends Component {
 
   public function store() {
     $this->validate();
+
+    if ($this->isNew) {
+      $this->tag->save();
+    }
     // Replace only with new file.
     $this->tag->files()->sync($this->fileModel);
     $this->tag->save();
-    session()->flash('success', 'Post successfully updated.');
+    $status = $this->isNew ? 'created' : 'updated';
+    $tagName = $this->tag->name;
+    return redirect()
+      ->to('/admin/tags-overview')
+      ->with('success', "Tag $tagName is $status.");
   }
 
 }

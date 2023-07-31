@@ -4,6 +4,9 @@
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h6>Tags</h6>
+                    <div>
+                        <a class="btn btn-primary" href="/admin/tag/add">Add tag</a>
+                    </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -21,37 +24,37 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($tags as $tag)
-                                    <tr>
-                                        <td class="px-2 py-1">
-                                            <div class="progress-wrapper w-75">
-                                                <span class="text-xs font-weight-bold">{{ $tag->name }}</span>
-                                            </div>
-                                        </td>
+                            @foreach($tags as $tag)
+                                <tr>
+                                    <td class="px-2 py-1">
+                                        <div class="progress-wrapper w-75">
+                                            <span class="text-xs font-weight-bold">{{ $tag->name }}</span>
+                                        </div>
+                                    </td>
 
 
-                                        <td>
-                                            <div class="progress-wrapper w-75">
-                                                <span class="text-xs font-weight-bold">{{ $tag->url_alias }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="/admin/tag/edit/{{ $tag->id }}"
-                                               class="font-weight-bold text-xs"
-                                               data-toggle="tooltip" data-original-title="edit tag">
-                                                Edit
-                                            </a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="/admin/tag/delete/{{ $tag->id }}"
-                                               class="text-danger font-weight-bold text-xs"
-                                               data-toggle="tooltip" data-original-title="Delete tag">
-                                                Delete
-                                            </a>
-                                        </td>
+                                    <td>
+                                        <div class="progress-wrapper w-75">
+                                            <span class="text-xs font-weight-bold">{{ $tag->url_alias }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a href="/admin/tag/edit/{{ $tag->id }}"
+                                           class="font-weight-bold text-xs"
+                                           data-toggle="tooltip" data-original-title="edit tag">
+                                            Edit
+                                        </a>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a href="/admin/tag/delete/{{ $tag->id }}"
+                                           class="text-danger font-weight-bold text-xs"
+                                           data-toggle="tooltip" data-original-title="Delete tag">
+                                            Delete
+                                        </a>
+                                    </td>
 
-                                    </tr>
-                                @endforeach
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -10,8 +10,13 @@ class Grid extends Component {
 
   public Collection $posts;
 
-  public function mount() {
-    $this->posts = BlogPosts::where("status", 1)->get();
+  public function mount(bool $all = TRUE, $posts = []) {
+    if ($all) {
+      $this->posts = BlogPosts::where("status", 1)->get();
+    } else {
+      // In order if we're passing blogs to the component.
+      $this->posts = $posts;
+    }
   }
 
   public function render() {

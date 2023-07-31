@@ -10,7 +10,7 @@ class Tag extends Model {
   use HasFactory;
 
   public function blogposts() {
-    return $this->hasMany(BlogPosts::class);
+    return $this->belongsToMany(BlogPosts::class, 'blog_tag', 'tag_id', 'blog_id');
   }
 
   public function files() {

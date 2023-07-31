@@ -28,12 +28,8 @@ use App\Http\Livewire\Frontend\Comment\Form as CommentForm;
 
 Route::get('/', Landing::class)->name('homepage');
 Route::get('/blog/{url_alias}', Detail::class)->name("Blog post detail page");
-//Route::get('tag/{tag:url_alias}', function (Tag $tag) {
-//  return view('tag-detail-page', [
-//    'posts' => $tag->blogposts,
-//    'tag' => $tag,
-//  ]);
-//});
+
+Route::get('tag/{tag:url_alias}', \App\Http\Livewire\Frontend\Tags\Detail::class );
 
 Route::get('/authors/{author:username}', function (User $author) {
   return view('author-detail-page', [
@@ -98,8 +94,13 @@ Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
 
     Route::get('/tag/add', [
       TagController::class,
-      'form'
+      'form',
     ])->name("tag_create");
+
+    Route::get('/tag/delete/{tag:id}', [
+      TagController::class,
+      'destroy',
+    ])->name("tag_delete");
 
   });
 

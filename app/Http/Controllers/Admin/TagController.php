@@ -20,4 +20,9 @@ class TagController extends Controller {
     ]);
   }
 
+  public function destroy(Tag $tag) {
+    $tag->delete();
+    return redirect()->to('/admin/tags-overview')->with('success', "Tag post $tag->name deleted.");
+  }
+
 }

@@ -91,7 +91,7 @@ Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
       'render',
     ])->name("tags_overview");
 
-    Route::get('/tag/edit/{tags:id}', [
+    Route::get('/tag/edit/{tag:id}', [
       TagController::class,
       'form',
     ])->name("tags_edit");

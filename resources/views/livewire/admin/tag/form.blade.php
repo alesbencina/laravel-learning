@@ -4,13 +4,23 @@
         <div class="row">
             <div class="col-lg-2 col-md-2">
                 <div class="form-group">
-                    <label for="title" class="form-control-label">{{ __('Name') }}</label>
+                    <label for="name" class="form-control-label">{{ __('Tag name') }}</label>
                     <input class="form-control"
                            type="text"
-                           placeholder="title"
-                           id="title"
+                           placeholder="name"
+                           wire:model="tag.name"
                     >
-                    @error('title') <span class="text-danger">{{ $message }}</span>@enderror
+                    @error('tag.name') <span class="text-danger">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="url_alias" class="form-control-label">{{ __('URL alias') }}</label>
+                    <input class="form-control"
+                           type="text"
+                           placeholder="url_alias"
+                           wire:model="tag.url_alias"
+                    >
+                    @error('tag.url_alias') <span class="text-danger">{{ $message }}</span>@enderror
                 </div>
 
             </div>

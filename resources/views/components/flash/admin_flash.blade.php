@@ -1,4 +1,3 @@
-
 @if(session()->has('success'))
     <div class="flash-success">
         <p>

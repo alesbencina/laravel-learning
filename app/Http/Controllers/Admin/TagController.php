@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BlogPosts;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Tag;
 use Illuminate\View\View;
 
 class TagController extends Controller {
@@ -15,8 +14,10 @@ class TagController extends Controller {
    * @return \Illuminate\View\View
    *   Returns the create blog from view.
    */
-  public function form(): View {
-    return view('admin.tags.form');
+  public function form(Tag $tag): View {
+    return view('admin.tags.form',[
+      'tag' => $tag
+    ]);
   }
 
 }

@@ -10,8 +10,8 @@
         @error('file')
         <div class="alert alert-danger show">{{ $message }}</div>
         @enderror
-        <input type="file" wire:model="file" class="form-control">
-        <button class="btn btn-primary mt-2" wire:click.prevent="upload()">Upload</button>
+        <input type="file" wire:model.live="file" class="form-control">
+        <button type="button" id="uploadFIle" class="btn btn-primary mt-2" wire:click.prevent="uploadFile()">Upload</button>
         <div x-show="isUploading">
             <progress max="100" x-bind:value="progress"></progress>
         </div>

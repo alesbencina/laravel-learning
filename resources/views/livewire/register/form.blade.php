@@ -1,6 +1,6 @@
     <div class="max-w-lg mx-auto mt-10">
         <h1 class="text-center font-bold text-xl ">User registration livewire</h1>
-        <form class="mt-10 bg-gray-50 p-6 rounded-xl" wire:submit.prevent="registerUser">
+        <form class="mt-10 bg-gray-50 p-6 rounded-xl" wire:submit="registerUser">
             @csrf
             <div class="mb-6">
                 <label for="name" class="block mb-2 uppercase font-bold text-xs text-gray-700">
@@ -12,7 +12,7 @@
                        id="name"
                        value="{{ old('name') }}"
                        required
-                       wire:model.defer="name"
+                       wire:model.live="name"
                 >
                 @error('name')
                 <p class="text-red-500 text-xs mt2"> {{ $message }}</p>
@@ -29,7 +29,7 @@
                        id="username"
                        required
                        value="{{ old('username') }}"
-                       wire:model.defer="username"
+                       wire:model.live="username"
                 >
                 @error('username')
                 <p class="text-red-500 text-xs mt2"> {{ $message }}</p>
@@ -46,7 +46,7 @@
                        id="email"
                        value="{{ old('email') }}"
                        required
-                       wire:model.defer="email"
+                       wire:model.live="email"
                 >
                 @error('email')
                 <p class="text-red-500 text-xs mt2"> {{ $message }}</p>
@@ -61,7 +61,7 @@
                        name="password"
                        id="password"
                        required
-                       wire:model.defer="password"
+                       wire:model.live="password"
                 >
                 @error('password')
                 <p class="text-red-500 text-xs mt2"> {{ $message }}</p>

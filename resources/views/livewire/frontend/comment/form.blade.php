@@ -1,5 +1,5 @@
 <div>
-    <form id="create-comment" wire:submit.prevent="create">
+    <form id="create-comment" wire:submit="create">
         @csrf
         <div class="mb-6">
             <header class="flex items-center">
@@ -19,7 +19,7 @@
                         rows="5"
                         placeholder="Quick, thing of something to say!"
                         required
-                        wire:model.defer="body"
+                        wire:model.live="body"
                 ></textarea>
                 <div> @error('body'){{ $message }}@enderror </div>
 

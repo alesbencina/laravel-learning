@@ -3,17 +3,16 @@
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageUploadController;
 use App\Http\Controllers\Admin\TagController;
-use App\Http\Livewire\Admin\Blog\Dashboard;
-use App\Http\Livewire\Admin\Tag\TagOverview;
-use App\Http\Livewire\Frontend\Blog\Detail;
-use App\Http\Livewire\Frontend\Landing;
-use App\Http\Livewire\Register\Form;
-use App\Http\Livewire\Sessions\Login;
-use App\Http\Livewire\UsersOverview;
-use App\Models\Tag;
+use App\Livewire\Admin\Blog\Dashboard;
+use App\Livewire\Admin\Tag\TagOverview;
+use App\Livewire\Frontend\Blog\Detail;
+use App\Livewire\Frontend\Comment\Form as CommentForm;
+use App\Livewire\Frontend\Landing;
+use App\Livewire\Register\Form;
+use App\Livewire\Sessions\Login;
+use App\Livewire\UsersOverview;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Frontend\Comment\Form as CommentForm;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +28,7 @@ use App\Http\Livewire\Frontend\Comment\Form as CommentForm;
 Route::get('/', Landing::class)->name('homepage');
 Route::get('/blog/{url_alias}', Detail::class)->name("Blog post detail page");
 
-Route::get('tag/{tag:url_alias}', \App\Http\Livewire\Frontend\Tags\Detail::class );
+Route::get('tag/{tag:url_alias}', \App\Livewire\Frontend\Tags\Detail::class );
 
 Route::get('/authors/{author:username}', function (User $author) {
   return view('author-detail-page', [

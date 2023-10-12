@@ -25,7 +25,6 @@
     <link id="pagestyle" href="{{ asset('assets/css/soft-ui-dashboard.css') }}" rel="stylesheet"/>
 
     <!-- Alpine -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="{{ asset('assets/js/plugins/cke5/build/ckeditor.js') }}"></script>
 
     @livewireStyles

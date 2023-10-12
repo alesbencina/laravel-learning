@@ -1,5 +1,5 @@
 <div>
-    <form id="delete-comment" wire:submit.prevent="destroy">
+    <form id="delete-comment" wire:submit="destroy">
         @csrf
         <div class="mb-6">
             <div class="flex justify-end mt-6 pt-6 border-t border-gray-200">

@@ -1,7 +1,7 @@
 <div>
     <main class="max-w-lg mx-auto mt-10">
         <h1 class="text-center font-bold text-xl ">Login</h1>
-        <form wire:submit.prevent="login" class="mt-10 bg-gray-50 p-6 rounded-xl">
+        <form wire:submit="login" class="mt-10 bg-gray-50 p-6 rounded-xl">
             @csrf
             <div class="mb-6">
                 <label for="email" class="block mb-2 uppercase font-bold text-xs text-gray-700">
@@ -13,7 +13,7 @@
                        id="email"
                        value="{{ old('email') }}"
                        required
-                       wire:model.defer="email"
+                       wire:model.live="email"
                 >
                 @error('email')
                 <p class="text-red-500 text-xs mt2"> {{ $message }}</p>
@@ -28,7 +28,7 @@
                        name="password"
                        id="password"
                        required
-                       wire:model.defer="password"
+                       wire:model.live="password"
                 >
                 @error('password')
                 <p class="text-red-500 text-xs mt2"> {{ $message }}</p>

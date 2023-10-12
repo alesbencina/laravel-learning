@@ -9,6 +9,11 @@ class Tag extends Model {
 
   use HasFactory;
 
+  protected $fillable = [
+    'name',
+    'url_alias',
+  ];
+
   public function blogposts() {
     return $this->belongsToMany(BlogPosts::class, 'blog_tag', 'tag_id', 'blog_id');
   }

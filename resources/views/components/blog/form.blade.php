@@ -1,5 +1,4 @@
-
-<form wire:submit.prevent="store">
+<form wire:submit="store">
     @csrf
     <div class="row justify-content-md-center ">
         <div class="col-lg-10 col-md-10">
@@ -9,7 +8,7 @@
                        type="text"
                        placeholder="title"
                        id="title"
-                       wire:model="title"
+                       wire:model.live="title"
                 >
                 @error('title') <span class="text-danger">{{ $message }}</span>@enderror
             </div>
@@ -20,7 +19,7 @@
                          <textarea
                                  class="ckeditor form-control"
                                  id="ckeditor"
-                                 wire:model="description"
+                                 wire:model.live="description"
                                  name="description"
                          >
                              {{ $description }}
@@ -37,7 +36,7 @@
                         id="blogTags"
                         multiple
                         class="form-control"
-                        wire:model="blogTags"
+                        wire:model.live="blogTags"
                 >
                     @foreach($tags as $id => $tag)
 
@@ -59,7 +58,7 @@
                        <textarea
                                class="form-control"
                                id="summary"
-                               wire:model="summary"
+                               wire:model.live="summary"
                                name="summary"
                                size="50"
                        >
@@ -81,7 +80,7 @@
             <div class="form-group">
 
                 <div class="form-check form-switch">
-                    <input wire:model="status"
+                    <input wire:model.live="status"
                            class="form-check-input"
                            type="checkbox"
                            id="status"
@@ -100,7 +99,7 @@
                        type="url_alias"
                        placeholder="URL alias"
                        id="url_alias"
-                       wire:model="url_alias"
+                       wire:model.live="url_alias"
                 >
                 @error('url_alias') <span class="text-danger">{{ $message }}</span>@enderror
                 <small>{{ __('The blog post URL alias. Enter the url link without special characters.')}}</small>

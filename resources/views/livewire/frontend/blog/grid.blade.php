@@ -5,6 +5,8 @@
                 @livewire('frontend.blog.component.blog-teaser', ['post' => $post, 'loopIteration' => $loop->iteration ])
             @endforeach
         </div>
+    @else
+        <p>There's current no blog post related with the term.</p>
     @endif
 
 </div>

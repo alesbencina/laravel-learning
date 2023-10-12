@@ -9,11 +9,14 @@
 
     <script src="{{ asset('assets/js/plugins/highlight/highlight/highlight.min.js?v=1') }}"></script>
     <script src="{{ asset('assets/js/plugins/highlight/highlight/languages/css.min.js?v=1') }}"></script>
-    <title>AB, Blog</title>
+    <title>@yield('meta_title', 'AB, Blog')</title>
+    <meta name="description" content=">@yield('meta_description', 'AB, Blog')">
+    <link rel="canonical" href="{{ url()->full() }}" />
+    <meta name="robots" content="index, follow">
 
     @livewireStyles
 </head>
-<body style="font-family: Open Sans, sans-serif">
+<body>
 
 @livewireScripts
 
@@ -44,7 +47,7 @@
 </section>
 @include('components.flash.flash')
 </body>
-<!-- Footer -->
+
 <footer class="bg-opacity-80 backdrop-blur-lg py-6">
     <div class="container mx-auto text-center">
         &copy; 2023 Ales Bencina. All rights reserved.

@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Merriweather';
+    src: url('../public/assets/fonts/frontend/Merriweather-Regular.ttf') format('ttf'),
+    url('../public/assets/fonts/frontend/Merriweather-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: 'Merriweather', fallback-fonts, serif;
+}
+
+.ck-content p,
+.ck-content pre {
+    box-sizing: border-box;
+    color: rgb(36, 36, 36);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.06px;
+    line-height: 32px;
+    margin: 40px 0px -9.2px;
+    overflow-wrap: break-word;
+    text-rendering: optimizelegibility;
+    word-break: break-word
+}
+
+.ck-content h3{
+    box-sizing: border-box;
+    color: rgb(36, 36, 36);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.384px;
+    line-height: 30px;
+    margin: 46.8px 0px -6.72px;
+    overflow-wrap: break-word;
+    text-rendering: optimizelegibility;
+    word-break: break-word
+}

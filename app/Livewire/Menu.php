@@ -14,9 +14,9 @@ class Menu extends Component
      */
     public $menuLinks = [
         ['name' => 'Home', 'url' => '/', 'loggedIn' => false],
-        ['name' => 'About', 'url' => '/about', 'loggedIn' => false],
-        ['name' => 'Login', 'url' => '/login', 'loggedIn' => false],
-        ['name' => 'Register', 'url' => '/register', 'loggedIn' => false],
+        ['name' => 'About', 'url' => '/blog/about', 'loggedIn' => false],
+        //['name' => 'Login', 'url' => '/login', 'loggedIn' => false],
+        //['name' => 'Register', 'url' => '/register', 'loggedIn' => false],
     ];
 
     /**

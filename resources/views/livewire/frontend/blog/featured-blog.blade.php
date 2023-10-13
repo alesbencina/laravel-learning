@@ -11,7 +11,9 @@
                 <header class="mt-8 lg:mt-0">
                     <div class="mt-4">
                         <h1 class="text-3xl">
-                            {{ $post->title }}
+                            <a href="/blog/{{ $post->url_alias }}" class="hover:text-blue-600 transition-colors duration-300">
+                                {{ $post->title }}
+                            </a>
                         </h1>
 
                         <span class="mt-2 block text-gray-400 text-xs">

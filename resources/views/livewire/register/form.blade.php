@@ -1,5 +1,5 @@
     <div class="max-w-lg mx-auto mt-10">
-        <h1 class="text-center font-bold text-xl ">User registration livewire</h1>
+        <h1 class="text-center font-bold text-xl ">User registration</h1>
         <form class="mt-10 bg-gray-50 p-6 rounded-xl" wire:submit="registerUser">
             @csrf
             <div class="mb-6">

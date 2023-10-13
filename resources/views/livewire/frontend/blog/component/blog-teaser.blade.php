@@ -10,7 +10,9 @@
         <header>
             <div class="mt-4">
                 <div class="text-3xl">
-                    {{ $post->title }}
+                    <a href="/blog/{{ $post->url_alias }}" class="hover:text-blue-600 transition-colors duration-300">
+                        {{ $post->title }}
+                    </a>
                 </div>
 
                 <span class="mt-2 block text-gray-400 text-xs">

@@ -1,14 +1,15 @@
 <!doctype html>
 <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
     <link href="{{ asset("assets/css/tailwind.min.css?v=1") }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset("assets/css/ckeditor.css?v=1") }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/highlight/highlight/styles/github-dark.min.css?v=1') }}" type="text/css">
 
     <script src="{{ asset('assets/js/plugins/highlight/highlight/highlight.min.js?v=1') }}"></script>
     <script src="{{ asset('assets/js/plugins/highlight/highlight/languages/css.min.js?v=1') }}"></script>
+    <link href="{{ asset('assets/css/frontend.css') }}" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('meta_title', 'AB, Blog')</title>
     <meta name="description" content=">@yield('meta_description', 'AB, Blog')">
     <link rel="canonical" href="{{ url()->full() }}" />
@@ -20,11 +21,11 @@
 
 @livewireScripts
 
-<section class="px-6 py-8">
-    <nav class="md:flex md:justify-between md:items-center">
-        <div>
-            <a href="/">
-                Logo placeholder
+<section class="py-8">
+    <nav class="md:flex md:justify-between md:items-center px-6">
+        <div class="logo-container">
+            <a href="/" class="logo-link">
+                <img src="{{ asset('assets/img/logos/logo.png') }}" alt="AB-log" class="logo-image"/>
             </a>
         </div>
 

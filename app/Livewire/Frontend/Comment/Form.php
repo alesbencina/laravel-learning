@@ -19,11 +19,15 @@ class Form extends Component {
   ];
 
   public function mount(BlogPosts $post) {
+
     $this->post = $post;
   }
 
   public function render() {
-    return view('livewire.frontend.comment.form');
+    if (config('features.comments')) {
+      return view('livewire.frontend.comment.form');
+    }
+    return view('livewire.empty-placeholder');
   }
 
   public function create() {

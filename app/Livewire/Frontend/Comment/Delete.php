@@ -10,7 +10,10 @@ class Delete extends Component {
   public Comment $comment;
 
   public function render() {
-    return view('livewire.frontend.comment.delete');
+    if (config('features.comments')) {
+      return view('livewire.frontend.comment.delete');
+    }
+    return view('livewire.empty-placeholder');
   }
 
   /**

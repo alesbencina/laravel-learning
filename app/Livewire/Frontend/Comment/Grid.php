@@ -16,7 +16,10 @@ class Grid extends Component {
   }
 
   public function render() {
-    return view('livewire.frontend.comment.grid');
+    if (config('features.comments')) {
+      return view('livewire.frontend.comment.grid');
+    }
+    return view('livewire.empty-placeholder');
   }
 
 }

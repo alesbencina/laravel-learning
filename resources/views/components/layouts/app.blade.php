@@ -23,9 +23,9 @@
 
 <section class="py-8">
     <nav class="md:flex md:justify-between md:items-center px-6">
-        <div>
-            <a href="/">
-                Logo placeholder
+        <div class="logo-container">
+            <a href="/" class="logo-link">
+                <img src="{{ asset('assets/img/logos/logo.png') }}" alt="AB-log" class="logo-image"/>
             </a>
         </div>
 

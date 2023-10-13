@@ -37,3 +37,8 @@ body {
     text-rendering: optimizelegibility;
     word-break: break-word
 }
+
+.logo-image {
+    height: 100px;
+}
+

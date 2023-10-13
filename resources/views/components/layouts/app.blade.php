@@ -22,10 +22,10 @@
 @livewireScripts
 
 <section class="py-8">
-    <nav class="md:flex md:justify-between md:items-center px-6">
+    <nav class="flex justify-between md:items-center px-6">
         <div class="logo-container">
             <a href="/" class="logo-link">
-                <img src="{{ asset('assets/img/logos/logo.png') }}" alt="AB-log" class="logo-image"/>
+                <img src="{{ asset('assets/img/logos/logo.svg') }}" alt="AB-log" class="logo-image"/>
             </a>
         </div>
 

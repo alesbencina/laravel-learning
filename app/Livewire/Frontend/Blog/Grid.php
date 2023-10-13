@@ -12,8 +12,14 @@ class Grid extends Component {
 
   public function mount(bool $all = TRUE, $posts = []) {
     if ($all) {
-      $this->posts = BlogPosts::where("status", 1)->get();
-    } else {
+      $this->posts = BlogPosts::where("status", 1)
+        ->orderBy('created_at', 'desc')
+        ->skip(1)
+        ->take(100)
+        ->get();
+
+    }
+    else {
       // In order if we're passing blogs to the component.
       $this->posts = $posts;
     }

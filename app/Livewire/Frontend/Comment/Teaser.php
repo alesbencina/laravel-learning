@@ -14,7 +14,10 @@ class Teaser extends Component {
   }
 
   public function render() {
-    return view('livewire.frontend.comment.teaser');
+    if (config('features.comments')) {
+      return view('livewire.frontend.comment.teaser');
+    }
+    return view('livewire.empty-placeholder');
   }
 
 }

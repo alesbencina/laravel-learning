@@ -21,8 +21,8 @@
 
 @livewireScripts
 
-<section class="px-6 py-8">
-    <nav class="md:flex md:justify-between md:items-center">
+<section class="py-8">
+    <nav class="md:flex md:justify-between md:items-center px-6">
         <div>
             <a href="/">
                 Logo placeholder

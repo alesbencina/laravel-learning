@@ -54,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Administrator pages.
-Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
+Route::middleware(['auth', 'role:admin|super-admin','ensure_feature_enabled:blog'])->group(function () {
   Route::get('/dashboard', [
     Dashboard::class,
     'render',

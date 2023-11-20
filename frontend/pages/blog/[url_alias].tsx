@@ -1,8 +1,6 @@
 import axios from 'axios';
 import {GetServerSideProps, NextPage} from 'next';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/github.css';
-import SafeHTMLContent from "../../components/Content/SafeHtmlContent"; // Or any other style you prefer
+import BlogPostDetail from "../../components/Blog/detail";
 
 interface BlogPostProps {
     post: {
@@ -11,14 +9,12 @@ interface BlogPostProps {
     };
 }
 
-const BlogPost: NextPage<BlogPostProps> = ({post}) => {
+const BlogPostPage: NextPage<BlogPostProps> = ({post}) => {
     return (
-        <article className="mt-8 prose prose-slate mx-auto lg:prose-lg">
-            <h1>{post.title}</h1>
-            <div>
-                <SafeHTMLContent html={post.description} ></SafeHTMLContent>
-            </div>
-        </article>
+        <BlogPostDetail
+            post={post}
+        >
+        </BlogPostDetail>
     );
 };
 
@@ -34,4 +30,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 };
 
-export default BlogPost;
+export default BlogPostPage;

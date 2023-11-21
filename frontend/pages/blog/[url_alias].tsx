@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const res = await axios.get(`http://laravel-learning.ddev.site/api/v1/blog/${url_alias}`);
     const post = res.data;
-    console.log(post)
+    console.log(res)
 
     return {
         props: {post},

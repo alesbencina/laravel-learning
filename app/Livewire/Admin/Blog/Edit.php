@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Blog;
 
 use App\Models\File;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -60,7 +61,7 @@ class Edit extends BlogBaseComponent {
     // Replace only with new file.
     $this->post->files()->sync($this->fileModel);
     $this->post->save();
-
+    Cache::tags(["blog_post_{$this->url_alias}"])->flush();
     session()->flash('message', 'Post successfully updated.');
     $this->dispatch('gotoTop');
   }

@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Blog;
 
 use App\Models\BlogPosts;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 /**
@@ -38,6 +39,9 @@ class Create extends BlogBaseComponent {
     // Replace only with new file.
     $post->files()->sync($this->fileModel);
     $post->save();
+
+    // Invalidate cache tags on blog_posts.
+    Cache::tags(['blog_posts'])->flush();
 
     return redirect()->to('/dashboard');
   }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {GetServerSideProps, NextPage} from 'next';
-import BlogPostDetail from "../../components/Blog/detail";
+import BlogPostDetail from "../../components/Blog";
 
 interface BlogPostProps {
     post: {
@@ -20,11 +20,8 @@ const BlogPostPage: NextPage<BlogPostProps> = ({post}) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const {url_alias} = context.params as { url_alias: string };
-
     const res = await axios.get(`http://laravel-learning.ddev.site/api/v1/blog/${url_alias}`);
     const post = res.data;
-    console.log(res)
-
     return {
         props: {post},
     };

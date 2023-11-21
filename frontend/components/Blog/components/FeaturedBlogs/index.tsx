@@ -9,7 +9,7 @@ interface BlogPostProps {
     };
 }
 
-export const BlogPostDetail =({
+export const BlogPostsGrid =({
     post
 }: BlogPostProps) => {
     return (
@@ -22,4 +22,4 @@ export const BlogPostDetail =({
     );
 }
 
-export default BlogPostDetail;
+export default BlogPostsGrid;

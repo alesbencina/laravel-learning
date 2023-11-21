@@ -13,7 +13,7 @@ class BlogApiController extends Controller {
     // Attempt to retrieve the post from cache
     $post = Cache::tags(['blog_posts', "blog_post_{$url_alias}"])
       ->rememberForever("blog_post_{$url_alias}", function () use ($url_alias) {
-        return BlogPosts::where('url_alias', $url_alias)
+        return BlogPosts::with(['tag.files','author','files'])->where('url_alias', $url_alias)
           ->where('status', TRUE)
           ->first();
       });

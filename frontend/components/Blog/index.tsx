@@ -1,22 +1,25 @@
 import 'highlight.js/styles/github.css';
 import React from "react";
 import SafeHTMLContent from "../Content/SafeHtmlContent";
-import ImageBase from "../Image";
+import {TagsList} from "../Tag/Tags";
 
 interface BlogPostProps {
     post: {
         title: string;
         description: string;
+        author: string
     };
 }
 
 export const BlogPostDetail =({
     post
 }: BlogPostProps) => {
-    console.log(post.tag[0].files[0].url);
     return (
             <article className="mt-8 prose prose-slate mx-auto lg:prose-lg">
-                <ImageBase src={post.tag[0].files[0].url} alt="neki"  title="neki" width={500} height={200}></ImageBase>
+                <div className="flex justify-between">
+                    <div>Author: {post.author.name}</div>
+                    <TagsList tags={post.tag}></TagsList>
+                </div>
                 <h1>{post.title}</h1>
                 <div>
                     <SafeHTMLContent html={post.description} ></SafeHTMLContent>

@@ -19,12 +19,32 @@ const BlogPostPage: NextPage<BlogPostProps> = ({post}) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const {url_alias} = context.params as { url_alias: string };
-    const res = await axios.get(`http://laravel-learning.ddev.site/api/v1/blog/${url_alias}`);
-    const post = res.data;
-    return {
-        props: {post},
-    };
-};
+    const { url_alias } = context.params as { url_alias: string };
 
+    try {
+        const apiUrl = process.env.BACKEND_URL;
+        const res = await axios.get(`${apiUrl}/blog/${url_alias}`);
+        const post = res.data;
+
+        return {
+            props: { post },
+        };
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response?.status === 404) {
+            // Redirect to a custom 'Not Found' page
+            return {
+                redirect: {
+                    destination: '/404',
+                    permanent: false,
+                },
+            };
+        }
+        return {
+            redirect: {
+                destination: '/404',
+                permanent: false,
+            },
+        };
+    }
+};
 export default BlogPostPage;

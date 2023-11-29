@@ -18,14 +18,17 @@ export const BlogTeaser = ({post}: BlogPostInterface) => {
                 ))}
             </div>
             <div className="p-4 flex flex-col flex-grow">
-                <h3 className="font-bold text-lg mb-2">{post.title}</h3>
+                <a href={"/blog/" + post.url_alias}>
+                    <h3 className="font-bold text-lg mb-2">{post.title}</h3>
+                </a>
+
                 <p className="text-gray-700 text-base mb-4">
                     {post.summary}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                     {post.tag.map((tag) => (
                         <a key={tag.id}
-                           href={`/tags/${tag.url_alias}`} // Adjust the URL pattern to match your routing structure
+                           href={`/tag/${tag.url_alias}`} // Adjust the URL pattern to match your routing structure
                            className="text-xs bg-gray-200 hover:bg-gray-300 text-gray-800 px-2 py-1 rounded-full transition duration-300 ease-in-out"
                            target="_blank"
                         >
@@ -36,7 +39,7 @@ export const BlogTeaser = ({post}: BlogPostInterface) => {
                 <div className="flex items-center justify-between mt-auto">
                     <span className="text-sm text-gray-600">{new Date(post.created_at).toLocaleDateString()}</span>
                     <a
-                        href={"blog/" + post.url_alias}
+                        href={"/blog/" + post.url_alias}
                         target="_blank"
                     >
                         Read More

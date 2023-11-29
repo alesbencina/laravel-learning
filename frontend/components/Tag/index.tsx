@@ -21,7 +21,7 @@ export const Tag = ({
     return (
         <div key={tag.id}>
             <div className="flex space-x-2">
-                <a href={"/tags/" + tag.url_alias}>
+                <a href={"/tag/" + tag.url_alias}>
                     {tag.files.map(file => (
                         <ImageBase
                             alt={tag.name}

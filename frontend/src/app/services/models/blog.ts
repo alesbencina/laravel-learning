@@ -4,7 +4,7 @@
  * @fileoverview Exports interfaces related to the blog module.
  */
 
-export interface Tag {
+export interface ITag {
   id: number;
   name: string;
   url_alias: string;
@@ -52,7 +52,7 @@ export interface BlogPostInterface {
   summary: string;
   created_at: string;
   updated_at: string;
-  tag: Tag[];
+  tag: ITag[];
   author: Author;
   files: File[];
 }

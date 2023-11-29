@@ -1,8 +1,9 @@
-import type { AppProps } from 'next/app';
+import type {AppProps} from 'next/app';
+import BlogPostsGrid from "../components/Blog/components/FeaturedBlogs";
 
-function Homepage({ Component, pageProps }: AppProps) {
+function Homepage({Component, pageProps}: AppProps) {
     return (
-        <div>homepage</div>
+        <BlogPostsGrid></BlogPostsGrid>
     )
 }
 

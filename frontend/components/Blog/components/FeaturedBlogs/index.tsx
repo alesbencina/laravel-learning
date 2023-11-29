@@ -1,6 +1,7 @@
-import 'highlight.js/styles/github.css';
-import SafeHTMLContent from "../../Content/SafeHtmlContent";
 import React from "react";
+import BlogTeaser from "../Teaser";
+import {GetServerSideProps} from "next";
+import axios from "axios/index";
 
 interface BlogPostProps {
     post: {
@@ -9,16 +10,9 @@ interface BlogPostProps {
     };
 }
 
-export const BlogPostsGrid =({
-    post
-}: BlogPostProps) => {
+export const BlogPostsGrid = () => {
     return (
-        <article className="mt-8 prose prose-slate mx-auto lg:prose-lg">
-            <h1>{post.title}</h1>
-            <div>
-                <SafeHTMLContent html={post.description} ></SafeHTMLContent>
-            </div>
-        </article>
+        <BlogTeaser></BlogTeaser>
     );
 }
 

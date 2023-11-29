@@ -4,9 +4,13 @@ import {ImageBase} from "../Image";
 
 interface TagProps {
     tag: {
+        name: any;
+        url_alias: string | undefined;
+        id: any;
         title: string;
         files: {
             url
+            map(element: (file) => JSX.Element): any;
         }
     };
 }
@@ -23,8 +27,8 @@ export const Tag = ({
                             alt={tag.name}
                             title={tag.name}
                             src={file.url}
-                            width={50}
-                            height={50}
+                            width={40}
+                            height={40}
                         >
                         </ImageBase>
                     ))}

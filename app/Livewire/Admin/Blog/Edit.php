@@ -61,7 +61,7 @@ class Edit extends BlogBaseComponent {
     // Replace only with new file.
     $this->post->files()->sync($this->fileModel);
     $this->post->save();
-    Cache::tags(["blog_post_{$this->url_alias}"])->flush();
+    Cache::tags(["blog_post_{$this->url_alias}", "blog_posts"])->flush();
     session()->flash('message', 'Post successfully updated.');
     $this->dispatch('gotoTop');
   }

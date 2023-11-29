@@ -6,7 +6,7 @@ import {BlogPostInterface} from "@/app/services/models/blog";
 interface BlogPostDetailProps {
     post: BlogPostInterface;
 }
-const BlogPostPage: NextPage<BlogPostDetailProps> = ({ post }) => { // Destructure post here
+const BlogPostPage: NextPage<BlogPostDetailProps> = ({ post }) => {
     return <BlogPostDetail post={post} />;
 };
 

@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Cache;
 
 class BlogApiController extends Controller {
 
-  public function getBlogPostByAlias($url_alias) {
-    // Attempt to retrieve the post from cache
+  public function getBlogPostByAlias(string $url_alias) {
     $post = Cache::tags(['blog_posts', "blog_post_{$url_alias}"])
       ->rememberForever("blog_post_{$url_alias}", function () use ($url_alias) {
-        return BlogPosts::with(['tag.files','author','files'])->where('url_alias', $url_alias)
+        return BlogPosts::with(['tag.files', 'author', 'files'])
+          ->where('url_alias', $url_alias)
           ->where('status', TRUE)
           ->first();
       });
@@ -25,6 +25,23 @@ class BlogApiController extends Controller {
     if (!$post || ($post->status == 0 && auth()->guest())) {
       return response()->json(['message' => 'Post not found or not published'], Response::HTTP_NOT_FOUND);
     }
+  }
+
+  public function getBlogPosts(int $offset = 0, int $limit = 10, string $order = "DESC") {
+    $posts = Cache::tags(['blog_posts'])
+      ->rememberForever("blog_posts", function () use ($offset, $limit, $order) {
+        return BlogPosts::with(['tag.files', 'author', 'files'])
+          ->where('status', TRUE)
+          ->orderBy('updated_at', $order)
+          ->offset($offset)
+          ->limit($limit)
+          ->get();
+      });
+
+    if ($posts) {
+      return response()->json($posts);
+    }
+    return response()->json(['message' => 'No job posts published']);
   }
 
 }

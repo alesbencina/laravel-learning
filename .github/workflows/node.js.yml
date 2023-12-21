@@ -20,14 +20,14 @@ jobs:
           node-version: '16.x'
 
       - name: Installing my packages
-        run: npm ci
+        run: yarn install
 
       - name: Build my App
         run: |
           cd frontend
           pwd
-          npm run build 
-          npm run export --outdir ../docs 
+          yarn build 
+          yarn export --outdir ../docs 
           touch ../docs/.nojekyll
 
       - name: Deploy 🚀

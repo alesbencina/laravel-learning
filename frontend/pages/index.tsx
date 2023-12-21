@@ -9,9 +9,24 @@ interface HomepageDetailProps {
 
 const HomePage: NextPage<HomepageDetailProps> = ({blogPosts}) => {
     return (
-        <div>hello</div>
+        <FeaturedBlogPosts posts={blogPosts}></FeaturedBlogPosts>
     );
 };
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+
+    try {
+        const blogPosts = await fetchBlogPosts();
+
+        return {
+            props: { blogPosts },
+        };
+    } catch (error) {
+        // Handle the error based on the type or status
+        return {
+            props: {},
+        };
+    }
+};
 
 export default HomePage;

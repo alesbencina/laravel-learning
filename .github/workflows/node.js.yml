@@ -23,7 +23,11 @@ jobs:
         run: npm ci
 
       - name: Build my App
-        run: cd ./frontend npm run build && npm run export --outdir ../docs && touch ../docs/.nojekyll
+        run: |
+          cd frontend 
+          npm run build 
+          npm run export --outdir ../docs 
+          touch ../docs/.nojekyll
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.1

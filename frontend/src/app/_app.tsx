@@ -2,8 +2,8 @@ import type { AppProps } from 'next/app';
 import AppComponent from "../../components/App";
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }: AppProps) {
-    return <AppComponent Component={Component} pageProps={pageProps} />;
+function MyApp({ Component, pageProps, router }: AppProps) {
+    return <AppComponent Component={Component} pageProps={pageProps}  router={router}/>;
 }
 
 export default MyApp;

@@ -2,19 +2,22 @@ import React from "react";
 import {BlogPostInterface} from "@/app/services/models/blog";
 import ImageBase from "../../../Image";
 
-export const BlogTeaser = ({post}: BlogPostInterface) => {
+interface BlogTeaserProps {
+    post: BlogPostInterface;
+}
+
+const BlogTeaser: React.FC<BlogTeaserProps> = ({ post }) => {
     return (
         <div key={post.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
             <div className="w-full h-48 object-cover">
                 {post.files.map(file => (
                     <ImageBase
                         alt={file.name}
-                        title={post.name}
+                        title={post.title}
                         src={file.url}
                         width={350}
                         height={250}
-                    >
-                    </ImageBase>
+                    />
                 ))}
             </div>
             <div className="p-4 flex flex-col flex-grow">

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const apiUrl = process.env.BACKEND_URL;
 
-export const fetchTagByUrlAlias = async (urlAlias) => {
+export const fetchTagByUrlAlias = async (urlAlias: any) => {
     try {
         const response = await axios.get(`${apiUrl}/tag/${urlAlias}`);
         return response.data;

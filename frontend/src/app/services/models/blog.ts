@@ -15,6 +15,7 @@ export interface ITag {
     tag_id: number;
   };
   files: File[];
+  blogposts: BlogPostInterface[]
 }
 
 export interface Author {

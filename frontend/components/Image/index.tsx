@@ -45,8 +45,6 @@ export const ImageBase = ({
                           width,
                           height,
                           priority = false,
-                          caption,
-                          quality = 75,
                       }: ImageProps) => (
     <NextImage
         src={decodeURIComponent(src)} // Next image expects the decoded URI to fetch.

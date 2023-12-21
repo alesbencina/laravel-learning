@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const SafeHTMLContent = ({ html }) => {
+interface SafeHtmlContentProps {
+    html: string;
+}
 
+const SafeHTMLContent: React.FC<SafeHtmlContentProps> = ({ html }) => {
     return (
         <div dangerouslySetInnerHTML={{ __html: html }} />
     );

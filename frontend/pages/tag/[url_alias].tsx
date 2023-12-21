@@ -1,5 +1,5 @@
 import {GetServerSideProps, NextPage} from 'next';
-import ITag from "@/app/services/models/blog";
+import {ITag} from "@/app/services/models/blog";
 import {fetchTagByUrlAlias} from "@/app/services/tag/tagService";
 import TagDetail from "../../components/Tag/Detail";
 

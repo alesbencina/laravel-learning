@@ -1,23 +1,13 @@
 import 'highlight.js/styles/github.css';
 import React from "react";
 import {ImageBase} from "../Image";
+import {ITag} from "@/app/services/models/blog";
 
 interface TagProps {
-    tag: {
-        name: any;
-        url_alias: string | undefined;
-        id: any;
-        title: string;
-        files: {
-            url
-            map(element: (file) => JSX.Element): any;
-        }
-    };
+    tag: ITag
 }
 
-export const Tag = ({
-                        tag
-                    }: TagProps) => {
+export const Tag = ({tag}: TagProps) => {
     return (
         <div key={tag.id}>
             <div className="flex space-x-2">
@@ -29,8 +19,7 @@ export const Tag = ({
                             src={file.url}
                             width={40}
                             height={40}
-                        >
-                        </ImageBase>
+                        />
                     ))}
                 </a>
 

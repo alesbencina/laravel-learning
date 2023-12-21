@@ -20,7 +20,7 @@ jobs:
           node-version: '16.x'
 
       - name: Installing my packages
-        run: yarn install
+        run: npm ci
 
       - name: Build my App
         run: |

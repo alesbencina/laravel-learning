@@ -24,7 +24,8 @@ jobs:
 
       - name: Build my App
         run: |
-          cd frontend 
+          cd frontend
+          pwd
           npm run build 
           npm run export --outdir ../docs 
           touch ../docs/.nojekyll

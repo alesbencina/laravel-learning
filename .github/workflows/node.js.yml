@@ -26,6 +26,7 @@ jobs:
         run: |
           cd frontend
           pwd
+          yarn install
           yarn build 
           yarn export --outdir ../docs 
           touch ../docs/.nojekyll

@@ -14,6 +14,11 @@ class File extends Model {
     'path',
   ];
 
+  protected $appends = ['url'];
+  public function getUrlAttribute() {
+    return asset($this->path);
+  }
+
   public function blogposts() {
     return $this->hasMany(BlogPosts::class);
   }

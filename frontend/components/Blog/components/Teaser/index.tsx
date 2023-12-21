@@ -10,8 +10,9 @@ const BlogTeaser: React.FC<BlogTeaserProps> = ({ post }) => {
     return (
         <div key={post.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
             <div className="w-full h-48 object-cover">
-                {post.files.map(file => (
+                {post.files.map((file,index) => (
                     <ImageBase
+                        key={index}
                         alt={file.name}
                         title={post.title}
                         src={file.url}

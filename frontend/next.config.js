@@ -4,6 +4,7 @@ const nextConfig = {
         domains: ['laravel-learning.ddev.site'],
         unoptimized: true
     },
+    basePath: '/laravel-learning',
 }
 
 module.exports = nextConfig

@@ -2,6 +2,7 @@
 const nextConfig = {
     images: {
         domains: ['laravel-learning.ddev.site'],
+        unoptimized: true
     },
 }
 

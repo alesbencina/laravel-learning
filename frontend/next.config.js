@@ -2,8 +2,10 @@
 const nextConfig = {
     images: {
         domains: ['laravel-learning.ddev.site'],
+        loader: 'akamai',
+        path: '',
     },
-    output: 'export',
+    assetPrefix: './',
 }
 
 module.exports = nextConfig

@@ -24,5 +24,7 @@ jobs:
 
       - name: Build my App
         run: |
+          pwd
+          ls -lah
           touch ../docs/.nojekyll
 

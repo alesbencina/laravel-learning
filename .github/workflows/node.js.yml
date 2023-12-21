@@ -26,5 +26,5 @@ jobs:
         run: |
           pwd
           ls -lah
-          touch ../docs/.nojekyll
+          touch docs/.nojekyll
 

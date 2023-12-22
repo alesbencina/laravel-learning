@@ -14,5 +14,4 @@ jobs:
     steps:
       - name: Build my App
         run: |
-          touch ../docs/.nojekyll
-
+          pwd

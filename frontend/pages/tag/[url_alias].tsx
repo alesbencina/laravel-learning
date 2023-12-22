@@ -15,7 +15,10 @@ const TagPage: NextPage<TagDetailProps> = ({tag}) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     // Hardcoded array of blog post aliases for testing
-    const aliases = ['rust', 'laravel', 'drupal']; // Replace these with your actual blog post aliases
+    const aliases = [
+        'rust',
+        'laravel'
+    ];
 
     const paths = aliases.map((alias) => ({
         params: {url_alias: alias},

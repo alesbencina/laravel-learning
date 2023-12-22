@@ -6,7 +6,7 @@ const nextConfig = {
         unoptimized: true
     },
     basePath: '/laravel-learning',
-    assetPrefix: '/laravel-learning',
+    assetPrefix: '/laravel-learning/',
 }
 
 module.exports = nextConfig

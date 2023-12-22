@@ -17,7 +17,7 @@ export const Tag = ({tag}: TagProps) => {
                             key={index}
                             alt={tag.name}
                             title={tag.name}
-                            src={file.url}
+                            src={file.path}
                             width={40}
                             height={40}
                         />

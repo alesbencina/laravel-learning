@@ -4,7 +4,6 @@
  * @fileoverview Renders an image optimized in case the .env file is set to do so.
  */
 import NextImage from 'next/image';
-
 export interface ImageProps {
     /**
      * The alternate text for the image.
@@ -38,6 +37,8 @@ export interface ImageProps {
     priority?: boolean;
 }
 
+let prefix = "/laravel-learning/";
+
 export const ImageBase = ({
                           alt,
                           title,
@@ -47,7 +48,7 @@ export const ImageBase = ({
                           priority = false,
                       }: ImageProps) => (
     <NextImage
-        src={decodeURIComponent(src)} // Next image expects the decoded URI to fetch.
+        src={`${prefix+src}`} // Next image expects the decoded URI to fetch.
         alt={alt}
         {...(title && { title })}
         {...(!width || !height

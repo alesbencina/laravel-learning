@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const repo = 'laravel-learning'
+const repo = '/laravel-learning'
 const assetPrefix = `/${repo}/`
 const basePath = `/${repo}`
 

@@ -15,7 +15,7 @@ const BlogTeaser: React.FC<BlogTeaserProps> = ({ post }) => {
                         key={index}
                         alt={file.name}
                         title={post.title}
-                        src={file.url}
+                        src={file.path}
                         width={350}
                         height={250}
                     />

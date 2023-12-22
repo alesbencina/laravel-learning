@@ -24,7 +24,9 @@ const BlogTeaser: React.FC<BlogTeaserProps> = ({ post }) => {
             </div>
             <div className="p-4 flex flex-col flex-grow">
                 <Link href={"/blog/" + post.url_alias} key={post.id}>
-                    <h3 className="font-bold text-lg mb-2">{post.title}</h3>
+                    <a>
+                        <h3 className="font-bold text-lg mb-2">{post.title}</h3>
+                    </a>
                 </Link>
 
                 <p className="text-gray-700 text-base mb-4">

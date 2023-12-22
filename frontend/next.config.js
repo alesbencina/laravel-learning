@@ -2,8 +2,10 @@
 const nextConfig = {
     images: {
         domains: ['laravel-learning.ddev.site'],
+        formats: ['image/avif', 'image/webp'],
+        unoptimized: true
     },
-    output: 'export',
+    basePath: '/laravel-learning',
 }
 
 module.exports = nextConfig

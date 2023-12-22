@@ -15,6 +15,11 @@ class File extends Model {
   ];
 
   protected $appends = ['url'];
+
+  public function getPathAttribute($path) {
+    return  "/" . $path;
+  }
+
   public function getUrlAttribute() {
     return asset($this->path);
   }

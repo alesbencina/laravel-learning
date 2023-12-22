@@ -15,7 +15,7 @@ class Tag extends Model {
   ];
 
   public function blogposts() {
-    return $this->belongsToMany(BlogPosts::class, 'blog_tag', 'tag_id', 'blog_id');
+    return $this->belongsToMany(BlogPosts::class, 'blog_tag', 'tag_id', 'blog_id')->where('status',TRUE);
   }
 
   public function files() {

@@ -13,7 +13,10 @@ const BlogPostPage: NextPage<BlogPostDetailProps> = ({ post }) => {
 // Implement getStaticPaths for a single page
 export const getStaticPaths: GetStaticPaths = async () => {
     // Hardcoded array of blog post aliases for testing
-    const aliases = ['rust-1', 'about', 'ggg']; // Replace these with your actual blog post aliases
+    const aliases = [
+        'rust-serde',
+        'about'
+    ];
 
     const paths = aliases.map((alias) => ({
         params: { url_alias: alias },
@@ -36,6 +39,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
         return { notFound: true }; // Return a 404 page
     }
 };
-
 
 export default BlogPostPage;

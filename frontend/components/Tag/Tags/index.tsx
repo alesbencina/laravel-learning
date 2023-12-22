@@ -10,8 +10,8 @@ interface TagListProps {
 export const TagsList: React.FC<TagListProps> = ({tags}) => {
     return (
         <div className="flex space-x-6 tags_list">
-            {tags.map(tag => (
-                <Tag tag={tag}></Tag>
+            {tags.map((tag,index) => (
+                <Tag key={index} tag={tag}></Tag>
             ))}
         </div>
     );

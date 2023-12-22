@@ -23,6 +23,7 @@ class BlogPosts extends Model {
     'tag_id',
     'author_id',
     'summary',
+    'status',
   ];
 
   //#2 All is fillable except what is guarded.

@@ -5,6 +5,7 @@ const nextConfig = {
         formats: ['image/avif', 'image/webp'],
         unoptimized: true
     },
+    basePath: '/laravel-learning',
 }
 
 module.exports = nextConfig

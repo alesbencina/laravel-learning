@@ -16,6 +16,7 @@ jobs:
         run: |
           pwd
           ls -lah
-          cd docs
-          touch .nojekyll
+          cd ./docs
+          pwd
+          touch ./.nojekyll
 
